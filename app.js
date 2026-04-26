@@ -345,3 +345,234 @@ function draw(n) {
 }
 
 draw(5);
+
+
+// ============================================================================
+// FIG 3 — Radar Explorer
+// ============================================================================
+
+const radarData = await d3.json("data/radar_data.json");
+
+// ── Club crests (PL badge CDN) ──
+const CRESTS = {
+    'Arsenal':'https://resources.premierleague.com/premierleague/badges/t3.png',
+    'Aston Villa':'https://resources.premierleague.com/premierleague/badges/t7.png',
+    'Brighton':'https://resources.premierleague.com/premierleague/badges/t36.png',
+    'Burnley':'https://resources.premierleague.com/premierleague/badges/t90.png',
+    'Chelsea':'https://resources.premierleague.com/premierleague/badges/t8.png',
+    'Crystal Palace':'https://resources.premierleague.com/premierleague/badges/t31.png',
+    'Everton':'https://resources.premierleague.com/premierleague/badges/t11.png',
+    'Fulham':'https://resources.premierleague.com/premierleague/badges/t54.png',
+    'Huddersfield':'https://resources.premierleague.com/premierleague/badges/t38.png',
+    'Hull':'https://resources.premierleague.com/premierleague/badges/t88.png',
+    'Leeds':'https://resources.premierleague.com/premierleague/badges/t2.png',
+    'Leicester':'https://resources.premierleague.com/premierleague/badges/t13.png',
+    'Liverpool':'https://resources.premierleague.com/premierleague/badges/t14.png',
+    'Man United':'https://resources.premierleague.com/premierleague/badges/t1.png',
+    'Middlesbrough':'https://resources.premierleague.com/premierleague/badges/t25.png',
+    'Newcastle':'https://resources.premierleague.com/premierleague/badges/t4.png',
+    'Norwich':'https://resources.premierleague.com/premierleague/badges/t45.png',
+    "Nott'm Forest":'https://resources.premierleague.com/premierleague/badges/t17.png',
+    'Sheffield United':'https://resources.premierleague.com/premierleague/badges/t49.png',
+    'Southampton':'https://resources.premierleague.com/premierleague/badges/t20.png',
+    'Stoke':'https://resources.premierleague.com/premierleague/badges/t110.png',
+    'Sunderland':'https://resources.premierleague.com/premierleague/badges/t56.png',
+    'Swansea':'https://resources.premierleague.com/premierleague/badges/t80.png',
+    'Tottenham':'https://resources.premierleague.com/premierleague/badges/t6.png',
+    'Watford':'https://resources.premierleague.com/premierleague/badges/t57.png',
+    'West Brom':'https://resources.premierleague.com/premierleague/badges/t35.png',
+    'West Ham':'https://resources.premierleague.com/premierleague/badges/t21.png',
+};
+
+const SHORT_NAMES = {
+    'Crystal Palace':'C. Palace', 'Man United':'Man Utd', 'Middlesbrough':'Boro',
+    "Nott'm Forest":'Forest', 'Sheffield United':'Sheff Utd',
+    'Huddersfield':'Hudds', 'Southampton':'Soton'
+};
+
+// ── Radar geometry ──
+const RW = 420, RH = 420, RCX = RW/2, RCY = RH/2, RADIUS = 155, LEVELS = 5;
+
+function radarAngle(i, total) {
+    return (Math.PI * 2 * i / total) - Math.PI / 2;
+}
+
+function drawRadarFrame(axes) {
+    const svg = d3.select("#radar-svg");
+    svg.selectAll("*").remove();
+    const g = svg.append("g").attr("transform", `translate(${RCX},${RCY})`);
+    const n = axes.length;
+
+    // Concentric rings
+    for (let lv = 1; lv <= LEVELS; lv++) {
+        const r = RADIUS * lv / LEVELS;
+        const pts = d3.range(n).map(i => {
+            const a = radarAngle(i, n);
+            return [r * Math.cos(a), r * Math.sin(a)];
+        });
+        g.append("polygon")
+            .attr("points", pts.map(p => p.join(",")).join(" "))
+            .attr("fill", "none")
+            .attr("stroke", "#e0ddd8")
+            .attr("stroke-width", lv === LEVELS ? 1.5 : 0.7);
+    }
+
+    // Spokes
+    for (let i = 0; i < n; i++) {
+        const a = radarAngle(i, n);
+        g.append("line")
+            .attr("x1", 0).attr("y1", 0)
+            .attr("x2", RADIUS * Math.cos(a))
+            .attr("y2", RADIUS * Math.sin(a))
+            .attr("stroke", "#ddd").attr("stroke-width", 0.7);
+    }
+
+    // Axis labels
+    for (let i = 0; i < n; i++) {
+        const a = radarAngle(i, n);
+        const lx = (RADIUS + 22) * Math.cos(a);
+        const ly = (RADIUS + 22) * Math.sin(a);
+        g.append("text")
+            .attr("x", lx).attr("y", ly)
+            .attr("text-anchor", Math.abs(lx) < 5 ? "middle" : lx > 0 ? "start" : "end")
+            .attr("dominant-baseline", Math.abs(ly) < 5 ? "middle" : ly > 0 ? "hanging" : "auto")
+            .style("font-size", "12px")
+            .attr("fill", "#555")
+            .text(axes[i].label);
+    }
+
+    return g;
+}
+
+function drawRadarPolygon(g, values, axes, color, opacity) {
+    const n = axes.length;
+    const pts = axes.map((ax, i) => {
+        const v = values[ax.key] || 0;
+        const r = RADIUS * Math.max(0.02, v);
+        const a = radarAngle(i, n);
+        return [r * Math.cos(a), r * Math.sin(a)];
+    });
+
+    g.append("polygon")
+        .attr("points", pts.map(p => p.join(",")).join(" "))
+        .attr("fill", color).attr("fill-opacity", opacity)
+        .attr("stroke", color).attr("stroke-width", 2).attr("stroke-opacity", 0.9);
+
+    pts.forEach(p => {
+        g.append("circle")
+            .attr("cx", p[0]).attr("cy", p[1])
+            .attr("r", 3.5)
+            .attr("fill", color)
+            .attr("stroke", "#fff")
+            .attr("stroke-width", 1.5);
+    });
+}
+
+function updateRadar(evt) {
+    const axes = radarData.axes;
+    const g = drawRadarFrame(axes);
+
+    drawRadarPolygon(g, evt.before, axes, "#c0392b", 0.12);
+    drawRadarPolygon(g, evt.after, axes, "#2d7a4f", 0.15);
+
+    document.getElementById("radar-title").textContent =
+        `${evt.old} \u2192 ${evt.new}`;
+    document.getElementById("radar-sub").textContent =
+        `${evt.team} \u00b7 ${evt.season} \u00b7 ${evt.date}`;
+
+    // Stat table
+    const labels = {
+        goals_for: "Goals Scored / game",
+        shots_ot: "Shots on Target / game",
+        corners: "Corners / game",
+        clean_sheets: "Clean Sheet %",
+        goals_against: "Goals Conceded / game",
+        win_rate: "Win Rate"
+    };
+    const fmt = (k, v) =>
+        (k === "clean_sheets" || k === "win_rate")
+            ? (v * 100).toFixed(0) + "%"
+            : v.toFixed(2);
+
+    const tbody = document.getElementById("stat-body");
+    tbody.innerHTML = "";
+    axes.forEach(ax => {
+        const bv = evt.before_raw[ax.key];
+        const av = evt.after_raw[ax.key];
+        const diff = av - bv;
+        const improved = ax.invert ? diff < 0 : diff > 0;
+        const cls = Math.abs(diff) < 0.01 ? "same" : (improved ? "better" : "worse");
+        const sign = diff > 0 ? "+" : "";
+        const diffStr = (ax.key === "clean_sheets" || ax.key === "win_rate")
+            ? sign + (diff * 100).toFixed(0) + "%"
+            : sign + diff.toFixed(2);
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td>${labels[ax.key] || ax.label}</td>
+            <td class="num">${fmt(ax.key, bv)}</td>
+            <td class="num">${fmt(ax.key, av)}</td>
+            <td class="num ${cls}">${diffStr}</td>`;
+        tbody.appendChild(tr);
+    });
+}
+
+// ── Build club grid ──
+{
+    const teams = [...new Set(radarData.events.map(e => e.team))].sort();
+    const grid = document.getElementById("club-grid");
+
+    teams.forEach(team => {
+        const btn = document.createElement("button");
+        btn.className = "club-btn";
+        btn.dataset.team = team;
+
+        const img = document.createElement("img");
+        img.src = CRESTS[team] || "";
+        img.alt = "";
+        img.onerror = function () { this.style.display = "none"; };
+
+        const span = document.createElement("span");
+        span.textContent = SHORT_NAMES[team] || team;
+
+        btn.appendChild(img);
+        btn.appendChild(span);
+        btn.addEventListener("click", () => selectRadarTeam(team));
+        grid.appendChild(btn);
+    });
+}
+
+function selectRadarTeam(team) {
+    // Update button highlights
+    document.querySelectorAll(".club-btn").forEach(b => {
+        b.classList.toggle("active", b.dataset.team === team);
+    });
+
+    // Build event chips
+    const row = document.getElementById("event-row");
+    row.innerHTML = "";
+    row.classList.add("show");
+
+    const teamEvents = radarData.events.filter(e => e.team === team);
+    teamEvents.forEach((evt, i) => {
+        const chip = document.createElement("button");
+        chip.className = "event-chip";
+        const shortOld = evt.old.replace(/\s*\(Caretaker\)\s*/g, " \u24B8").trim();
+        const shortNew = evt.new.replace(/\s*\(Caretaker\)\s*/g, " \u24B8").trim();
+        chip.innerHTML = `${shortOld} <span class="arrow">\u2192</span> ${shortNew} <span style="color:#999;font-size:.75rem">${evt.season}</span>`;
+        chip.addEventListener("click", () => selectRadarEvent(evt, i));
+        row.appendChild(chip);
+    });
+
+    // Auto-select first
+    if (teamEvents.length > 0) selectRadarEvent(teamEvents[0], 0);
+
+    document.getElementById("radar-empty").style.display = "none";
+}
+
+function selectRadarEvent(evt, idx) {
+    document.querySelectorAll(".event-chip").forEach((c, i) => {
+        c.classList.toggle("active", i === idx);
+    });
+    document.getElementById("radar-panel").classList.add("show");
+    updateRadar(evt);
+}

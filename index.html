@@ -5,6 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Manager Bounce</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+    /* ── Fig 3: Radar Explorer ── */
+    .club-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+    .club-btn {
+        display: flex; align-items: center; justify-content: center; gap: 6px;
+        padding: 8px 6px; border: 1.5px solid #ddd; border-radius: 8px;
+        background: #fff; cursor: pointer; transition: all .15s;
+        font-family: inherit; font-size: .78rem; color: #333;
+        text-align: center; line-height: 1.2;
+    }
+    .club-btn:hover { border-color: #888; background: #f5f4f0; }
+    .club-btn.active { border-color: #1a1a1a; background: #1a1a1a; color: #fff; font-weight: 600; }
+    .club-btn img { width: 22px; height: 22px; object-fit: contain; flex-shrink: 0; }
+
+    .event-row { margin-bottom: 16px; display: none; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .event-row.show { display: flex; }
+    .event-chip {
+        padding: 7px 14px; border: 1.5px solid #ccc; border-radius: 20px;
+        background: #fff; cursor: pointer; font-size: .82rem;
+        font-family: inherit; color: #444; transition: all .15s;
+    }
+    .event-chip:hover { border-color: #666; }
+    .event-chip.active { border-color: #1a1a1a; background: #1a1a1a; color: #fff; font-weight: 600; }
+    .event-chip .arrow { color: #999; margin: 0 3px; }
+    .event-chip.active .arrow { color: #ccc; }
+
+    .radar-panel {
+        display: none; background: #fff; border: 1px solid #e0ddd8;
+        border-radius: 12px; padding: 24px;
+        box-shadow: 0 2px 12px rgba(0,0,0,.04);
+    }
+    .radar-panel.show { display: block; }
+    .radar-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+    .radar-title { font-size: 1.15rem; font-weight: 600; }
+    .radar-sub { font-size: .85rem; color: #888; }
+    .radar-svg-wrap { display: flex; justify-content: center; margin: 12px 0 8px; }
+    .radar-legend { display: flex; justify-content: center; gap: 24px; margin-bottom: 8px; }
+    .radar-legend span { display: flex; align-items: center; gap: 6px; font-size: .82rem; color: #555; }
+
+    .stat-table { width: 100%; border-collapse: collapse; font-size: .85rem; margin-top: 12px; }
+    .stat-table th { text-align: left; font-weight: 600; padding: 6px 10px; border-bottom: 2px solid #e0ddd8; color: #333; }
+    .stat-table td { padding: 6px 10px; border-bottom: 1px solid #eee; }
+    .stat-table tr:last-child td { border-bottom: none; }
+    .stat-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+    .better { color: #2d7a4f; font-weight: 600; }
+    .worse  { color: #c0392b; font-weight: 600; }
+    .same   { color: #888; }
+
+    .empty-state {
+        text-align: center; padding: 40px 20px; color: #999;
+        font-size: .95rem; border: 2px dashed #ddd; border-radius: 12px;
+    }
+    .empty-state .big-arrow { font-size: 2rem; margin-bottom: 6px; }
+    </style>
 </head>
 <body>
     <article>
@@ -117,6 +176,55 @@
         that is partly bad luck. The team was always going to recover
         somewhat, regardless of who was in the dugout. The new manager gets
         the credit; the statistics suggest they may not always deserve it.</p>
+
+        <h2>Beyond the Scoreline</h2>
+
+        <p>Points per game captures the result but not the story. A team can
+        improve its points haul while creating fewer chances, or concede more
+        goals while climbing the table through sheer finishing luck. To
+        understand what actually changes when a new manager arrives, we need
+        to look beneath the headline number.</p>
+
+        <p>The radar chart below compares six performance dimensions across a
+        ten-match window on each side of every mid-season managerial change
+        in the dataset. Select a club and then a specific handover to see
+        how the team's tactical fingerprint shifted.</p>
+
+        <figure id="fig3-container">
+            <div class="club-grid" id="club-grid"></div>
+            <div class="event-row" id="event-row"></div>
+            <div class="radar-panel" id="radar-panel">
+                <div class="radar-header">
+                    <div class="radar-title" id="radar-title"></div>
+                    <div class="radar-sub" id="radar-sub"></div>
+                </div>
+                <div class="radar-legend">
+                    <span><span class="legend-swatch" style="background:#c0392b"></span> Before (outgoing)</span>
+                    <span><span class="legend-swatch" style="background:#4a9e6b"></span> After (incoming)</span>
+                </div>
+                <div class="radar-svg-wrap">
+                    <svg id="radar-svg" width="420" height="420"></svg>
+                </div>
+                <table class="stat-table" id="stat-table">
+                    <thead>
+                        <tr><th>Metric</th><th class="num">Before</th><th class="num">After</th><th class="num">Change</th></tr>
+                    </thead>
+                    <tbody id="stat-body"></tbody>
+                </table>
+            </div>
+            <div class="empty-state" id="radar-empty">
+                <div class="big-arrow">&#8593;</div>
+                Pick a club above to explore its managerial changes.
+            </div>
+            <figcaption>
+                <strong>Fig. 3</strong> — Radar comparison of team performance in the
+                10 matches before and after each mid-season managerial change. Each
+                axis runs from the worst value in the dataset (centre) to the best
+                (edge). "Goals Conceded" is inverted so that the edge always means
+                better. Select a club and handover to compare.
+            </figcaption>
+        </figure>
+
     </article>
 </body>
 <!-- D3.js Library -->

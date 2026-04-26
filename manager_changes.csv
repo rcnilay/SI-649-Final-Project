@@ -1,0 +1,160 @@
+change_id,team,old_manager,new_manager,change_date,season,before_games,after_games,is_caretaker
+1,Arsenal,Arsene Wenger,Unai Emery,2018-08-12,18-19,15,15,false
+2,Arsenal,Unai Emery,Freddie Ljungberg,2019-12-01,19-20,15,15,false
+3,Arsenal,Freddie Ljungberg,Mikel Arteta,2019-12-26,19-20,15,15,false
+4,Aston Villa,Paul Lambert,Tim Sherwood,2015-02-07,14-15,15,15,false
+5,Aston Villa,Tim Sherwood,Unknown,2015-10-03,15-16,15,15,false
+6,Aston Villa,Unknown,Remi Garde,2015-11-02,15-16,15,15,false
+7,Aston Villa,Remi Garde,Unknown,2016-03-05,15-16,15,15,false
+8,Aston Villa,Unknown,Dean Smith,2019-08-10,19-20,15,15,false
+9,Aston Villa,Dean Smith,Steven Gerrard,2021-11-05,21-22,15,15,false
+10,Aston Villa,Steven Gerrard,Unknown,2022-10-02,22-23,15,15,false
+11,Aston Villa,Unknown,Unai Emery,2022-11-06,22-23,15,15,false
+12,Bournemouth,Eddie Howe,Scott Parker,2022-08-06,22-23,15,15,false
+13,Bournemouth,Scott Parker,Gary O'Neil,2022-08-31,22-23,15,15,false
+14,Bournemouth,Gary O'Neil,Andoni Iraola,2023-08-12,23-24,15,15,false
+15,Brentford,Thomas Frank,Cristian Noya Silvi,2025-08-17,25-26,15,15,false
+16,Brighton,Sami Hyypia,Chris Hughton,2019-08-10,19-20,15,15,false
+17,Brighton,Chris Hughton,Graham Potter,2022-10-01,22-23,15,15,false
+18,Brighton,Graham Potter,Roberto De Zerbi,2025-08-16,25-26,15,15,false
+19,Burnley,Mike Jackson (Caretaker),Vincent Kompany,2022-04-02,21-22,15,15,false
+20,Burnley,Vincent Kompany,Unknown,2022-05-07,21-22,15,15,false
+21,Burnley,Unknown,Scott Parker,2023-08-11,23-24,15,15,false
+22,Burnley,Scott Parker,Unknown,2024-05-04,23-24,15,15,false
+23,Burnley,Unknown,Scott Parker,2025-08-16,25-26,15,15,false
+24,Chelsea,Jose Mourinho,Steve Holland (Caretaker),2015-12-19,15-16,15,15,true
+25,Chelsea,Steve Holland (Caretaker),Guus Hiddink,2015-12-26,15-16,15,15,false
+26,Chelsea,Guus Hiddink,Antonio Conte,2016-08-15,16-17,15,15,false
+27,Chelsea,Antonio Conte,Maurizio Sarri,2018-08-11,18-19,15,15,false
+28,Chelsea,Maurizio Sarri,Frank Lampard,2019-08-11,19-20,15,15,false
+29,Chelsea,Frank Lampard,Thomas Tuchel,2021-01-27,20-21,15,15,false
+30,Chelsea,Thomas Tuchel,Graham Potter,2022-10-01,22-23,15,15,false
+31,Chelsea,Graham Potter,Bruno Saltor (Caretaker),2023-04-04,22-23,15,15,true
+32,Chelsea,Bruno Saltor (Caretaker),Frank Lampard,2023-04-08,22-23,15,15,false
+33,Chelsea,Frank Lampard,Mauricio Pochettino,2023-08-13,23-24,15,15,false
+34,Chelsea,Mauricio Pochettino,Enzo Maresca,2025-08-17,25-26,15,15,false
+35,Crystal Palace,Alan Pardew,Sam Allardyce,2014-12-28,14-15,15,15,false
+36,Crystal Palace,Sam Allardyce,Frank de Boer,2015-01-10,14-15,15,15,false
+37,Crystal Palace,Frank de Boer,Roy Hodgson,2016-12-26,16-17,15,15,false
+38,Crystal Palace,Roy Hodgson,Patrick Vieira,2017-08-12,17-18,15,15,false
+39,Crystal Palace,Patrick Vieira,Paddy McCarthy (Caretaker),2017-09-16,17-18,15,15,true
+40,Crystal Palace,Paddy McCarthy (Caretaker),Roy Hodgson,2021-08-14,21-22,15,15,false
+41,Crystal Palace,Roy Hodgson,Unknown,2023-03-19,22-23,15,15,false
+42,Crystal Palace,Unknown,Oliver Glasner,2023-04-01,22-23,15,15,false
+43,Everton,Roberto Martinez,David Unsworth (Caretaker),2016-05-15,15-16,15,15,true
+44,Everton,David Unsworth (Caretaker),Ronald Koeman,2016-08-13,16-17,15,15,false
+45,Everton,Ronald Koeman,David Unsworth (Caretaker),2017-10-29,17-18,15,15,true
+46,Everton,David Unsworth (Caretaker),Sam Allardyce,2017-12-02,17-18,15,15,false
+47,Everton,Sam Allardyce,Marco Silva,2018-08-11,18-19,15,15,false
+48,Everton,Marco Silva,Duncan Ferguson (Caretaker),2019-12-07,19-20,15,15,true
+49,Everton,Duncan Ferguson (Caretaker),Carlo Ancelotti,2019-12-26,19-20,15,15,false
+50,Everton,Carlo Ancelotti,Rafael Benitez,2021-08-14,21-22,15,15,false
+51,Everton,Rafael Benitez,Duncan Ferguson (Caretaker),2022-01-22,21-22,15,15,true
+52,Everton,Duncan Ferguson (Caretaker),Frank Lampard,2022-02-08,21-22,15,15,false
+53,Everton,Frank Lampard,Sean Dyche,2023-02-04,22-23,15,15,false
+54,Everton,Sean Dyche,David Moyes,2025-08-18,25-26,15,15,false
+55,Fulham,Peter Grant (Caretaker),Slavisa Jokanovic,2018-11-24,18-19,12,15,false
+56,Fulham,Slavisa Jokanovic,Claudio Ranieri,2019-03-03,18-19,15,15,false
+57,Fulham,Claudio Ranieri,Scott Parker,2022-08-06,22-23,15,15,false
+58,Huddersfield,Mark Hudson (Caretaker),Jan Siewert,2019-01-20,18-19,15,15,false
+59,Huddersfield,Jan Siewert,Mark Hudson (Caretaker),2019-01-29,18-19,15,15,true
+60,Hull,Mike Phelan,Mike Phelan (Caretaker),2016-08-13,16-17,15,15,true
+61,Hull,Mike Phelan (Caretaker),Marco Silva,2016-10-15,16-17,15,15,false
+62,Hull,Marco Silva,Leonid Slutsky,2017-01-02,16-17,15,15,false
+63,Hull,Leonid Slutsky,Unknown,2017-05-06,16-17,15,3,false
+64,Leeds,Marcelo Bielsa,Jesse Marsch,2022-03-05,21-22,15,15,false
+65,Leeds,Jesse Marsch,Michael Skubala (Caretaker),2023-02-08,22-23,15,15,true
+66,Leeds,Michael Skubala (Caretaker),Javi Gracia,2023-02-25,22-23,15,15,false
+67,Leeds,Javi Gracia,Sam Allardyce,2023-05-06,22-23,15,15,false
+68,Leeds,Sam Allardyce,Daniel Farke,2025-08-18,25-26,15,15,false
+69,Leicester,Nigel Pearson,Claudio Ranieri,2015-08-08,15-16,15,15,false
+70,Leicester,Claudio Ranieri,Craig Shakespeare,2017-02-27,16-17,15,15,false
+71,Leicester,Craig Shakespeare,Michael Appleton (Caretaker),2017-10-21,17-18,15,15,true
+72,Leicester,Michael Appleton (Caretaker),Claude Puel,2017-10-29,17-18,15,15,false
+73,Leicester,Claude Puel,Brendan Rodgers,2019-02-26,18-19,15,15,false
+74,Leicester,Brendan Rodgers,Dean Smith,2019-03-03,18-19,15,15,false
+75,Leicester,Dean Smith,Enzo Maresca,2023-04-04,22-23,15,10,false
+76,Leicester,Enzo Maresca,Steve Cooper,2023-04-15,22-23,15,8,false
+77,Liverpool,Brendan Rodgers,Jurgen Klopp,2015-10-17,15-16,15,15,false
+78,Liverpool,Jurgen Klopp,Arne Slot,2025-08-15,25-26,15,15,false
+79,Man City,Manuel Pellegrini,Pep Guardiola,2016-08-13,16-17,15,15,false
+80,Man United,Louis van Gaal,Jose Mourinho,2016-08-14,16-17,15,15,false
+81,Man United,Jose Mourinho,Ole Gunnar Solskjaer,2018-12-22,18-19,15,15,false
+82,Man United,Ole Gunnar Solskjaer,Michael Carrick (Caretaker),2021-11-28,21-22,15,15,true
+83,Man United,Michael Carrick (Caretaker),Ralf Rangnick,2021-12-05,21-22,15,15,false
+84,Man United,Ralf Rangnick,Erik ten Hag,2022-08-07,22-23,15,15,false
+85,Man United,Erik ten Hag,Ruben Amorim,2025-08-17,25-26,15,15,false
+86,Middlesbrough,Aitor Karanka,Steve Agnew (Caretaker),2017-03-19,16-17,15,11,true
+87,Newcastle,John Carver (Caretaker),Steve McClaren,2015-01-01,14-15,15,15,false
+88,Newcastle,Steve McClaren,Rafael Benitez,2015-08-09,15-16,15,15,false
+89,Newcastle,Rafael Benitez,Steve Bruce,2016-03-14,15-16,15,15,false
+90,Newcastle,Steve Bruce,Graeme Jones (Caretaker),2019-08-11,19-20,15,15,true
+91,Newcastle,Graeme Jones (Caretaker),Eddie Howe,2021-10-23,21-22,15,15,false
+92,Norwich,Alex Neil,Dean Smith,2019-08-09,19-20,15,15,false
+93,Norwich,Dean Smith,David Wagner,2021-11-20,21-22,15,15,false
+94,Nott'm Forest,Ange Postecoglou (Caretaker),Ange Postecoglou,2023-12-23,23-24,15,15,false
+95,Nott'm Forest,Ange Postecoglou,Sean Dyche,2025-09-13,25-26,15,15,false
+96,QPR,Mark Hughes,Unknown,2015-02-07,14-15,15,15,false
+97,QPR,Unknown,Harry Redknapp,2015-02-21,14-15,15,13,false
+98,Sheffield United,Chris Wilder,Paul Heckingbottom (Caretaker),2021-03-14,20-21,15,15,true
+99,Sheffield United,Paul Heckingbottom (Caretaker),Jack Lester (Caretaker),2023-08-12,23-24,15,15,true
+100,Sheffield United,Jack Lester (Caretaker),Chris Wilder,2023-12-06,23-24,15,15,false
+101,Southampton,Claude Puel,Mauricio Pellegrino,2016-08-13,16-17,15,15,false
+102,Southampton,Mauricio Pellegrino,Mark Hughes,2017-08-12,17-18,15,15,false
+103,Southampton,Mark Hughes,Kelvin Davis (Caretaker),2018-03-03,17-18,15,15,true
+104,Southampton,Kelvin Davis (Caretaker),Rubens Barrichello... no,2018-12-05,18-19,15,15,false
+105,Southampton,Rubens Barrichello... no,Ruben Selles (Caretaker),2022-11-06,22-23,15,15,true
+106,Southampton,Ruben Selles (Caretaker),Ruben Selles,2023-02-04,22-23,15,15,false
+107,Southampton,Ruben Selles,Unknown,2023-05-08,22-23,15,4,false
+108,Stoke,Mark Hughes,Eddie Niedzwiecki (Caretaker),2018-01-15,17-18,15,15,true
+109,Stoke,Eddie Niedzwiecki (Caretaker),Paul Lambert,2018-01-20,17-18,15,15,false
+110,Sunderland,Dick Advocaat,Sam Allardyce,2015-03-21,14-15,15,15,false
+111,Sunderland,Sam Allardyce,David Moyes,2015-10-17,15-16,15,15,false
+112,Sunderland,David Moyes,Simon Grayson,2016-08-13,16-17,15,15,false
+113,Sunderland,Simon Grayson,Regis Le Bris,2025-08-16,25-26,15,15,false
+114,Swansea,Alan Curtis (Caretaker),Francesco Guidolin,2015-12-12,15-16,15,15,false
+115,Swansea,Francesco Guidolin,Bob Bradley,2016-01-24,15-16,15,15,false
+116,Swansea,Bob Bradley,Alan Curtis (Caretaker),2016-10-15,16-17,15,15,true
+117,Swansea,Alan Curtis (Caretaker),Paul Clement,2016-12-31,16-17,15,15,false
+118,Swansea,Paul Clement,Leon Britton (Caretaker),2017-01-14,16-17,15,15,true
+119,Swansea,Leon Britton (Caretaker),Carlos Carvalhal,2017-12-23,17-18,15,15,false
+120,Swansea,Carlos Carvalhal,Graham Potter,2017-12-30,17-18,15,15,false
+121,Tottenham,Mauricio Pochettino,Jose Mourinho,2019-11-23,19-20,15,15,false
+122,Tottenham,Jose Mourinho,Ryan Mason (Caretaker),2021-04-21,20-21,15,15,true
+123,Tottenham,Ryan Mason (Caretaker),Nuno Espirito Santo,2021-08-15,21-22,15,15,false
+124,Tottenham,Nuno Espirito Santo,Antonio Conte,2021-11-07,21-22,15,15,false
+125,Tottenham,Antonio Conte,Cristian Stellini (Caretaker),2023-04-03,22-23,15,15,true
+126,Tottenham,Cristian Stellini (Caretaker),Ryan Mason (Caretaker),2023-04-27,22-23,15,15,true
+127,Tottenham,Ryan Mason (Caretaker),Ange Postecoglou,2023-08-13,23-24,15,15,false
+128,Tottenham,Ange Postecoglou,Thomas Frank,2025-08-16,25-26,15,15,false
+129,Watford,Quique Sanchez Flores,Walter Mazzarri,2016-08-13,16-17,15,15,false
+130,Watford,Walter Mazzarri,Marco Silva,2017-05-06,16-17,15,15,false
+131,Watford,Marco Silva,Unknown,2018-01-02,17-18,15,15,false
+132,Watford,Unknown,Javi Gracia,2018-01-31,17-18,15,15,false
+133,Watford,Javi Gracia,Quique Sanchez Flores,2019-09-15,19-20,15,15,false
+134,Watford,Quique Sanchez Flores,Nigel Pearson,2019-12-04,19-20,15,15,false
+135,Watford,Nigel Pearson,Unknown,2020-07-04,19-20,15,15,false
+136,Watford,Unknown,Xisco Munoz,2021-08-14,21-22,15,15,false
+137,Watford,Xisco Munoz,Claudio Ranieri,2021-10-02,21-22,15,15,false
+138,Watford,Claudio Ranieri,Roy Hodgson,2022-01-15,21-22,15,15,false
+139,Watford,Roy Hodgson,Rob Edwards,2022-05-07,21-22,15,4,false
+140,West Brom,Tony Pulis,Alan Pardew,2015-01-01,14-15,15,15,false
+141,West Brom,Alan Pardew,Darren Moore,2015-01-10,14-15,15,15,false
+142,West Brom,Darren Moore,James Shan (Caretaker),2017-11-25,17-18,15,15,true
+143,West Brom,James Shan (Caretaker),Slaven Bilic,2017-12-02,17-18,15,15,false
+144,West Brom,Slaven Bilic,Sam Allardyce,2018-04-07,17-18,15,15,false
+145,West Brom,Sam Allardyce,Steve Bruce,2020-09-13,20-21,15,15,false
+146,West Brom,Steve Bruce,Carlos Corberan,2020-12-20,20-21,15,15,false
+147,West Ham,Sam Allardyce,Slaven Bilic,2015-08-09,15-16,15,15,false
+148,West Ham,Slaven Bilic,David Moyes,2017-11-19,17-18,15,15,false
+149,West Ham,David Moyes,Manuel Pellegrini,2018-08-12,18-19,15,15,false
+150,West Ham,Manuel Pellegrini,David Moyes,2020-01-01,19-20,15,15,false
+151,West Ham,David Moyes,Graham Potter,2025-08-16,25-26,15,15,false
+152,West Ham,Graham Potter,Massimiliano Allegri,2025-09-29,25-26,15,15,false
+153,Wolves,Nuno Espirito Santo,Bruno Lage,2021-08-14,21-22,15,15,false
+154,Wolves,Bruno Lage,Unknown,2022-10-08,22-23,15,15,false
+155,Wolves,Unknown,Julen Lopetegui,2022-12-26,22-23,15,15,false
+156,Wolves,Julen Lopetegui,Gary O'Neil,2023-08-14,23-24,15,15,false
+157,Wolves,Gary O'Neil,Vitor Pereira,2025-08-16,25-26,15,15,false
+158,Wolves,Vitor Pereira,Unknown,2025-11-08,25-26,15,15,false
+159,Wolves,Unknown,Rob Edwards,2025-11-22,25-26,15,15,false

@@ -551,3 +551,75 @@ svg { overflow: visible; }
     letter-spacing: 1px;
     color: var(--green);
 }
+
+/* ═══════════════════════════════════════════════════════════
+   Fig 5 — Scatter Plot
+   ═══════════════════════════════════════════════════════════ */
+.scatter-controls {
+    display: flex; flex-wrap: wrap; align-items: center;
+    gap: 10px 20px; margin-bottom: 16px;
+    font-family: var(--font-ui); font-size: .85rem;
+}
+.scatter-ctrl-group { display: flex; align-items: center; gap: 6px; }
+.ctrl-label { color: var(--ink-muted); white-space: nowrap; font-weight: 500; }
+
+.metric-btn {
+    padding: 5px 14px; border: 1.5px solid var(--rule); border-radius: 20px;
+    background: var(--bg-card); cursor: pointer; font-size: .8rem;
+    font-family: var(--font-ui); color: var(--ink-muted); transition: all .15s;
+}
+.metric-btn:hover { border-color: #888; color: var(--ink); }
+.metric-btn.active { border-color: var(--ink); background: var(--ink); color: #fff; font-weight: 600; }
+
+.caretaker-btn {
+    padding: 5px 14px; border: 1.5px solid var(--green); border-radius: 20px;
+    background: var(--green); color: #fff; font-weight: 600;
+    cursor: pointer; font-size: .8rem; font-family: var(--font-ui); transition: all .15s;
+}
+.caretaker-btn.hidden { border-color: var(--rule); background: var(--bg-card); color: var(--ink-faint); font-weight: 400; }
+
+#scatter-slider { width: 130px; accent-color: var(--green); cursor: pointer; }
+#scatter-window-label { display: inline-block; min-width: 5em; font-weight: 600; color: var(--ink); }
+.zoom-hint { font-family: var(--font-ui); font-size: .72rem; color: var(--ink-faint); white-space: nowrap; }
+
+#fig5 svg { cursor: crosshair; }
+#fig5 svg circle.dot { cursor: pointer; }
+
+/* Scatter side panels */
+#fig5-row { display: flex; align-items: flex-start; gap: 8px; }
+
+.scatter-side-panel {
+    flex-shrink: 0; background: var(--bg-tint); border: 1px solid var(--rule);
+    border-radius: 10px; padding: 14px 10px;
+}
+#scatter-left  { width: 122px; }
+#scatter-right { width: 144px; }
+
+.side-empty {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; min-height: 320px;
+    color: #ccc; font-size: .75rem; font-family: var(--font-ui);
+    text-align: center; line-height: 1.6; gap: 4px;
+}
+.manager-swap { display: none; flex-direction: column; align-items: center; gap: 5px; }
+.manager-swap.show { display: flex; }
+.swap-club { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-bottom: 6px; }
+.swap-crest { width: 44px; height: 44px; object-fit: contain; }
+.swap-club-name { font-size: .7rem; font-family: var(--font-ui); color: var(--ink-muted); text-align: center; }
+.swap-divider { width: 60%; border: none; border-top: 1px solid var(--rule); margin: 4px 0; }
+.swap-manager-block { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 100%; }
+.manager-avatar { width: 50px; height: 50px; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
+.manager-label { font-size: .68rem; font-family: var(--font-ui); color: var(--ink-soft); text-align: center; line-height: 1.3; max-width: 100px; word-break: break-word; }
+.swap-arrow-row { font-size: 1.4rem; color: #bbb; line-height: 1; }
+.swap-meta { font-size: .63rem; color: var(--ink-faint); font-family: var(--font-ui); text-align: center; margin-top: 6px; line-height: 1.5; }
+
+.scatter-stats { display: none; }
+.scatter-stats.show { display: block; }
+.stat-win { font-size: .67rem; font-family: var(--font-ui); color: var(--ink-faint); margin-bottom: 10px; }
+.stat-block { margin-bottom: 9px; padding-bottom: 9px; border-bottom: 1px solid #e8e6e0; }
+.stat-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.stat-block-label { font-size: .63rem; font-family: var(--font-ui); color: var(--ink-faint); text-transform: uppercase; letter-spacing: .4px; margin-bottom: 3px; }
+.stat-block-value { font-size: .75rem; font-family: var(--font-ui); color: var(--ink-muted); line-height: 1.4; }
+.stat-block-delta { font-size: .8rem; font-family: var(--font-ui); font-weight: 700; margin-top: 2px; }
+.stat-block-delta.better { color: var(--green); }
+.stat-block-delta.worse  { color: var(--red); }

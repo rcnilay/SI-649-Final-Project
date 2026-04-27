@@ -3,136 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Manager Bounce Premier League 2014-2026</title>
+    <title>The Manager Bounce — Premier League 2014–2026</title>
     <link rel="stylesheet" href="css/style.css">
-    <style>
-    /* ── Fig 3: Radar Explorer ── */
-    .club-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
-        gap: 8px;
-        margin-bottom: 20px;
-    }
-    .club-btn {
-        display: flex; align-items: center; justify-content: center; gap: 6px;
-        padding: 8px 6px; border: 1.5px solid #ddd; border-radius: 8px;
-        background: #fff; cursor: pointer; transition: all .15s;
-        font-family: inherit; font-size: .78rem; color: #333;
-        text-align: center; line-height: 1.2;
-    }
-    .club-btn:hover { border-color: #888; background: #f5f4f0; }
-    .club-btn.active { border-color: #1a1a1a; background: #1a1a1a; color: #fff; font-weight: 600; }
-    .club-btn img { width: 22px; height: 22px; object-fit: contain; flex-shrink: 0; }
-
-    .event-row { margin-bottom: 16px; display: none; flex-wrap: wrap; gap: 8px; align-items: center; }
-    .event-row.show { display: flex; }
-    .event-chip {
-        padding: 7px 14px; border: 1.5px solid #ccc; border-radius: 20px;
-        background: #fff; cursor: pointer; font-size: .82rem;
-        font-family: inherit; color: #444; transition: all .15s;
-    }
-    .event-chip:hover { border-color: #666; }
-    .event-chip.active { border-color: #1a1a1a; background: #1a1a1a; color: #fff; font-weight: 600; }
-    .event-chip .arrow { color: #999; margin: 0 3px; }
-    .event-chip.active .arrow { color: #ccc; }
-
-    .radar-panel {
-        display: none; background: #fff; border: 1px solid #e0ddd8;
-        border-radius: 12px; padding: 24px;
-        box-shadow: 0 2px 12px rgba(0,0,0,.04);
-    }
-    .radar-panel.show { display: block; }
-    .radar-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
-    .radar-title { font-size: 1.15rem; font-weight: 600; }
-    .radar-sub { font-size: .85rem; color: #888; }
-    .radar-svg-wrap { display: flex; justify-content: center; margin: 12px 0 8px; }
-    .radar-legend { display: flex; justify-content: center; gap: 24px; margin-bottom: 8px; }
-    .radar-legend span { display: flex; align-items: center; gap: 6px; font-size: .82rem; color: #555; }
-
-    .stat-table { width: 100%; border-collapse: collapse; font-size: .85rem; margin-top: 12px; }
-    .stat-table th { text-align: left; font-weight: 600; padding: 6px 10px; border-bottom: 2px solid #e0ddd8; color: #333; }
-    .stat-table td { padding: 6px 10px; border-bottom: 1px solid #eee; }
-    .stat-table tr:last-child td { border-bottom: none; }
-    .stat-table .num { text-align: right; font-variant-numeric: tabular-nums; }
-    .better { color: #2d7a4f; font-weight: 600; }
-    .worse  { color: #c0392b; font-weight: 600; }
-    .same   { color: #888; }
-
-    .empty-state {
-        text-align: center; padding: 40px 20px; color: #999;
-        font-size: .95rem; border: 2px dashed #ddd; border-radius: 12px;
-    }
-    .empty-state .big-arrow { font-size: 2rem; margin-bottom: 6px; }
-
-    /* ── Fig 4: Scatter Plot ── */
-    .scatter-controls {
-        display: flex; flex-wrap: wrap; align-items: center;
-        gap: 10px 20px; margin-bottom: 16px;
-        font-family: sans-serif; font-size: .85rem;
-    }
-    .scatter-ctrl-group { display: flex; align-items: center; gap: 6px; }
-    .ctrl-label { color: #555; white-space: nowrap; }
-    .metric-btn {
-        padding: 5px 13px; border: 1.5px solid #ccc; border-radius: 20px;
-        background: #fff; cursor: pointer; font-size: .82rem;
-        font-family: inherit; color: #444; transition: all .15s;
-    }
-    .metric-btn:hover { border-color: #666; }
-    .metric-btn.active { border-color: #1a1a1a; background: #1a1a1a; color: #fff; font-weight: 600; }
-    .caretaker-btn {
-        padding: 5px 13px; border: 1.5px solid #4a9e6b; border-radius: 20px;
-        background: #4a9e6b; color: #fff; font-weight: 600;
-        cursor: pointer; font-size: .82rem; font-family: inherit; transition: all .15s;
-    }
-    .caretaker-btn.hidden { border-color: #aaa; background: #fff; color: #888; font-weight: 400; }
-    #scatter-slider { width: 130px; accent-color: #1a1a1a; }
-    #scatter-window-label { display: inline-block; width: 5em; }
-    #fig4 svg { cursor: crosshair; }
-    #fig4 svg circle.dot { cursor: pointer; }
-    .zoom-hint { font-family: sans-serif; font-size: .72rem; color: #aaa; white-space: nowrap; }
-
-    /* ── Fig 4: Side panels ── */
-    #fig4-row { display: flex; align-items: flex-start; gap: 8px; }
-    .scatter-side-panel {
-        flex-shrink: 0; background: #f7f6f2; border: 1px solid #e0ddd8;
-        border-radius: 10px; padding: 14px 10px; box-sizing: border-box;
-    }
-    #scatter-left  { width: 122px; }
-    #scatter-right { width: 144px; }
-
-    .side-empty {
-        display: flex; flex-direction: column; align-items: center;
-        justify-content: center; min-height: 320px;
-        color: #ccc; font-size: .75rem; font-family: sans-serif;
-        text-align: center; line-height: 1.6; gap: 4px;
-    }
-    .manager-swap { display: none; flex-direction: column; align-items: center; gap: 5px; }
-    .manager-swap.show { display: flex; }
-    .swap-club { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-bottom: 6px; }
-    .swap-crest { width: 44px; height: 44px; object-fit: contain; }
-    .swap-club-name { font-size: .7rem; font-family: sans-serif; color: #666; text-align: center; }
-    .swap-divider { width: 60%; border: none; border-top: 1px solid #e0ddd8; margin: 4px 0; }
-    .swap-manager-block { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 100%; }
-    .manager-avatar { width: 50px; height: 50px; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
-    .manager-label {
-        font-size: .68rem; font-family: sans-serif; color: #333;
-        text-align: center; line-height: 1.3; max-width: 100px; word-break: break-word;
-    }
-    .swap-arrow-row { font-size: 1.4rem; color: #bbb; line-height: 1; }
-    .swap-meta { font-size: .63rem; color: #aaa; font-family: sans-serif; text-align: center; margin-top: 6px; line-height: 1.5; }
-
-    .scatter-stats { display: none; }
-    .scatter-stats.show { display: block; }
-    .stat-win { font-size: .67rem; font-family: sans-serif; color: #999; margin-bottom: 10px; }
-    .stat-block { margin-bottom: 9px; padding-bottom: 9px; border-bottom: 1px solid #e8e6e0; }
-    .stat-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-    .stat-block-label { font-size: .63rem; font-family: sans-serif; color: #aaa; text-transform: uppercase; letter-spacing: .4px; margin-bottom: 3px; }
-    .stat-block-value { font-size: .75rem; font-family: sans-serif; color: #555; line-height: 1.4; }
-    .stat-block-delta { font-size: .8rem; font-family: sans-serif; font-weight: 700; margin-top: 2px; }
-    .stat-block-delta.better { color: #4a9e6b; }
-    .stat-block-delta.worse  { color: #c0392b; }
-    </style>
-
 </head>
 <body>
 
@@ -175,7 +47,7 @@
 
     <!-- ── Stadium Hero Header ── -->
     <header class="article-header" id="section-intro">
-        <p class="kicker">Premier League &nbsp;·&nbsp; 2014-2026 &nbsp;·&nbsp; Data Analysis</p>
+        <p class="kicker">Premier League &nbsp;·&nbsp; 2014–2026 &nbsp;·&nbsp; Data Analysis</p>
         <h1>The Manager Bounce</h1>
         <div class="byline">
             <span>11 Premier League seasons</span>
@@ -194,11 +66,11 @@
                 <span class="header-stat-lbl">Seasons</span>
             </div>
             <div class="header-stat">
-                <span class="header-stat-num">2014-26</span>
+                <span class="header-stat-num">2014–26</span>
                 <span class="header-stat-lbl">Coverage</span>
             </div>
             <div class="header-stat">
-                <span class="header-stat-num">5</span>
+                <span class="header-stat-num">4</span>
                 <span class="header-stat-lbl">Visualisations</span>
             </div>
         </div>
@@ -210,15 +82,14 @@
         <p>In football, firing a manager is never just a personnel decision. It is a
         signal that something is broken, patience has run out, and the club needs a reset.</p>
 
-
-        <p>Fans often call what comes next the <em>manager bounce</em> the short-term lift
+        <p>Fans often call what comes next the <em>manager bounce</em> — <strong>the short-term lift</strong>
         a team supposedly gets after a new manager arrives. The idea feels intuitive. A new
         voice can change the mood, simplify tactics, or push players who had gone flat under
         the previous coach. But it can also be a story we tell after the fact. Many managers
         are fired after unusually bad runs, so some improvement may have happened anyway.</p>
 
-        <p>This project asks a simple question: does the manager bounce actually show up
-        in the data?</p>
+        <p>This project asks a simple question: <strong>does the manager bounce actually show up
+        in the data?</strong></p>
 
         <p>To test that, we looked at Premier League managerial changes from 2014 to 2026
         and compared each team's points per game before and after the handover. Instead of
@@ -237,7 +108,7 @@
         open, too inconsistent, and short on control.</p>
 
         <p>Tuchel arrived with a very different identity. Within weeks, Chelsea became harder
-        to break down. The change was not subtle. The same squad suddenly looked more
+        to break down. <strong>The change was not subtle.</strong> The same squad suddenly looked more
         organised, more compact, and more confident. This is the kind of example that makes
         the manager bounce feel real: a talented team underperforming, followed by a new
         coach who immediately gives them structure.</p>
@@ -245,7 +116,7 @@
         <figure id="fig1-container">
             <div id="fig1"></div>
             <figcaption>
-                <strong>Fig. 1</strong> Chelsea's results in the 10 games before and
+                <strong>Fig. 1</strong> — Chelsea's results in the 10 games before and
                 after Frank Lampard was replaced by Thomas Tuchel in January 2021.
                 Bar height shows points earned (3 = win, 1 = draw); losses are shown
                 as a stub at the baseline. The dashed line marks the handover.
@@ -259,15 +130,14 @@
         </figure>
 
         <blockquote class="pull-quote">
-            But that is also why Chelsea is dangerous as evidence. It is memorable,
-            dramatic, and unusually clean. Most Premier League sackings are messier than this.
+            "But that is also why Chelsea is dangerous as evidence. It is memorable,
+            dramatic, and unusually clean. Most Premier League sackings are messier than this."
             <cite>The limits of one example</cite>
         </blockquote>
 
-
         <div class="transition-box">
             Chelsea gives us the story. The rest of the dataset lets us test whether the
-            story holds up. A single example can make the bounce look obvious but across
+            story holds up. A single example can make the bounce look obvious — but across
             the league, clubs fire managers for many different reasons: poor tactics, injuries,
             bad recruitment, dressing-room problems, or simply bad luck. If the manager bounce
             is more than a myth, we should see improvement across many cases, not just in the
@@ -281,7 +151,7 @@
         and after the handover. A positive value means the team improved after changing
         managers. A negative value means the team got worse.</p>
 
-        <p>The distribution shows that the bounce exists, but not in the clean, dramatic way
+        <p>The distribution shows that <strong>the bounce exists</strong>, but not in the clean, dramatic way
         it is often talked about. Most teams improved after making a change, and the median
         change is positive. That supports the idea that clubs often get some short-term lift.</p>
 
@@ -289,7 +159,7 @@
             <div id="fig2"></div>
             <div id="bounce-callout" class="bounce-callout"></div>
             <figcaption>
-                <strong>Fig. 2</strong> Distribution of change in points per game across all
+                <strong>Fig. 2</strong> — Distribution of change in points per game across all
                 qualifying manager changes. Bars right of zero represent improvement; bars left
                 represent decline. The dashed line marks the median. Hover bars to see which
                 specific changes fall in each range. Use the slider to adjust the match window.
@@ -298,13 +168,12 @@
 
         <p>But the spread matters. A large number of teams did not improve, and some declined
         after changing managers. The bounce is not automatic. It is better understood as a
-        tendency than a guarantee.</p>
+        tendency than <strong>a guarantee.</strong></p>
 
         <p>The window size also changes the story. When we look only a few matches before
         and after the change, the bounce looks stronger. But as the window expands, the effect
         becomes smaller and less dramatic. That suggests some of the early lift may be
         short-lived or partly driven by teams recovering from an unusually bad run.</p>
-
 
         <!-- ── Section 3: Trajectory ── -->
         <h2 id="section-trajectory"><span class="section-label">Over Time</span> The Bounce Trajectory</h2>
@@ -317,11 +186,10 @@
         after a managerial change. The first few matches under a new manager tend to sit above
         the pre-change baseline, which suggests that the bounce is not just a fan myth.</p>
 
-
-        <figure id="trajectory-container">
-            <div id="trajectory-chart"></div>
+        <figure id="fig4-container">
+            <div id="fig4"></div>
             <figcaption>
-                <strong>Fig. 3</strong> Average points per game at each match offset
+                <strong>Fig. 3</strong> — Average points per game at each match offset
                 from the managerial handover, pooled across all qualifying changes.
                 Shaded bands show ±1 standard error. The dotted line marks the mean
                 pre-change level. Hover any dot for details.
@@ -333,7 +201,7 @@
         </figure>
 
         <p>But the effect is modest. It is not a total transformation. The average improvement
-        is small, and by around the eighth or ninth match, the advantage starts to fade back
+        is small, and by around <strong>the eighth or ninth match, the advantage starts to fade</strong> back
         toward the team's earlier level.</p>
 
         <p>That fading is important. Managers are usually fired after a poor stretch, and poor
@@ -357,6 +225,7 @@
         win rate. This view helps show whether a manager change shifted the team's actual
         playing profile, not just the final score. Some handovers show a clear tactical shift.
         Others look more like a results bump without a major underlying change.</p>
+
         <figure id="fig3-container">
             <div class="club-grid" id="club-grid"></div>
             <div class="event-row" id="event-row"></div>
@@ -384,48 +253,43 @@
                 Pick a club above to explore its managerial changes.
             </div>
             <figcaption>
-                <strong>Fig. 4</strong> Radar comparison of team performance in the
+                <strong>Fig. 4</strong> — Radar comparison of team performance in the
                 10 matches before and after each mid-season managerial change. Each axis
                 runs from the worst value in the dataset (centre) to the best (edge).
                 Hover any vertex dot for details; the matching table row highlights in sync.
             </figcaption>
         </figure>
 
-        <p>What the radar helps show is whether the change was only about results, or whether
-        the team actually started playing differently. If the after shape simply gets larger,
-        the team may have improved across the board. But if the shape changes direction, that
-        suggests a shift in style: more shots, cleaner defending, a higher win rate, or a
-        different balance between attack and defense.</p>
 
-        <p>This matters because a manager bounce is not always the same thing as manager
-        impact. A team can collect more points for a few weeks without changing much underneath.
-        The radar chart makes those mixed cases easier to see. Some handovers look like real
-        tactical changes. Others look more like a temporary results bump.</p>
+        <!-- ── Section 5: Scatter ── -->
+        <h2 id="section-scatter"><span class="section-label">All 159</span> Exploring Every Change</h2>
 
-        <!-- Section 5: Scatter -->
-        <h2 id="section-scatter"><span class="section-label">Explore</span> Every Change</h2>
+        <p>The histogram and trajectory chart show us averages and distributions,
+        but they hide the individual stories. Each of those 159 managerial changes
+        is a club, a manager, a set of circumstances. The scatter plot below makes
+        every one of them visible.</p>
 
-        <p>The distribution shows the overall pattern, but it also hides the individual stories.
-        The scatter plot below brings those stories back. Each point represents one managerial
-        change. The horizontal axis shows how the team performed before the change, and the
-        vertical axis shows how the team performed after it.</p>
+        <p>Each dot is one manager change. <strong>The horizontal axis shows the
+        team's performance before the handover; the vertical axis shows performance
+        after.</strong> Dots above the dashed diagonal improved. Dots below it got worse.
+        The immediate takeaway is the spread: there is no tight cluster of points just
+        above the line. The dots are scattered across all four quadrants.</p>
 
-        <p>The diagonal line is the key reference point. Points above the line improved after
-        changing managers. Points below the line declined. This makes the manager bounce easier
-        to inspect case by case instead of only as an average across the league.</p>
+        <p>Toggle between points per game and goal differential to see whether the
+        bounce looks different depending on which lens you use. <strong>Goal differential
+        tends to be a stricter judge</strong> — it is harder to sustain a gap between
+        goals scored and goals conceded than it is to collect points through tight wins.
+        A club that looks better in the points view but similar in the goal differential
+        view may simply have gotten lucky with results.</p>
 
-        <p>You can also switch between points per game and goal differential. Points per game
-        tells us what the team actually earned, while goal differential gives a steadier sense
-        of whether the underlying performance changed. A team can win a few close matches and
-        look better in the table, but goal differential helps show whether the improvement was
-        more than just short-term results.</p>
+        <p>Select specific clubs from the grid to trace their managerial history. Clubs
+        with serial instability — Watford and Sunderland in this era stand out — show
+        a scatter of dots with no clear pattern: some improved, some declined, and the
+        aggregate effect is roughly zero. The churn itself may be the problem.
+        <strong>Stability, it turns out, is its own form of performance.</strong>
+        Click any dot to see the full breakdown for that change.</p>
 
-        <p>This view connects back to the main question of the project. If a team moves clearly
-        above the diagonal, the change looks like a successful bounce. If it stays near the line,
-        the effect is small. If it falls below the line, the new manager did not fix the problem,
-        at least not in the selected window.</p>
-
-        <figure id="fig4-container">
+        <figure id="fig5-container">
             <div class="scatter-controls">
                 <div class="scatter-ctrl-group">
                     <span class="ctrl-label">Metric:</span>
@@ -445,7 +309,7 @@
                 </div>
             </div>
             <div class="club-grid" id="scatter-club-grid"></div>
-            <div id="fig4-row">
+            <div id="fig5-row">
                 <div id="scatter-left" class="scatter-side-panel">
                     <div class="side-empty" id="scatter-left-empty">
                         <div style="font-size:1.5rem">&#8592;</div>
@@ -469,9 +333,7 @@
                         <div class="swap-meta" id="swap-meta"></div>
                     </div>
                 </div>
-
-                <div id="fig4"></div>
-
+                <div id="fig5"></div>
                 <div id="scatter-right" class="scatter-side-panel">
                     <div class="side-empty" id="scatter-right-empty">
                         <div>Stats appear<br>on click</div>
@@ -480,30 +342,29 @@
                 </div>
             </div>
             <figcaption>
-                <strong>Fig. 5</strong> Each point represents one managerial change.
-                The horizontal axis shows team performance before the change, and the vertical
-                axis shows performance after the change. Points above the diagonal improved.
-                Points below the diagonal declined. Toggle the metric, adjust the match window,
-                filter caretaker appointments, and select clubs to highlight their changes.
-                Click any point for a full breakdown.
+                <strong>Fig. 5</strong> — Each dot is one managerial change. Horizontal axis:
+                performance before; vertical axis: performance after. Points above the dashed
+                diagonal improved; below declined. Toggle metric, adjust the window, filter
+                caretakers, and select clubs to highlight their history. Click any dot for the
+                full breakdown.
             </figcaption>
         </figure>
 
-        <!-- Section 6: Conclusion -->
+        <!-- ── Section 6: Conclusion ── -->
         <h2 id="section-conclusion"><span class="section-label">Verdict</span> Conclusion</h2>
 
-        <p>The manager bounce is real, but it is smaller and less reliable than the phrase
+        <p>The manager bounce is real, but it is <strong>smaller and less reliable</strong> than the phrase
         makes it sound.</p>
 
         <p>Changing managers can create a short-term lift, especially in the first few matches.
         But across the Premier League, that lift is uneven, often modest, and likely mixed with
-        regression to the mean. Some clubs genuinely improve under a new manager. Others simply
+        <strong>regression to the mean.</strong> Some clubs genuinely improve under a new manager. Others simply
         return to normal after a bad run. Some get worse.</p>
 
         <blockquote class="pull-quote">
-            The better question may not be whether the bounce exists. The data suggests
+            "The better question may not be whether the bounce exists. The data suggests
             that it does. The better question is: when is the bounce actually about the
-            manager, and when is it just football correcting itself?
+            manager, and when is it just football correcting itself?"
             <cite>The real question</cite>
         </blockquote>
 
@@ -515,10 +376,10 @@
             <span class="footer-badge-text">Data Project</span>
         </div>
         <div>
-            Data covers all Premier League seasons from 2014-15 to 2025-26.
+            Data covers all Premier League seasons from 2014–15 to 2025–26.
             Manager changes include only those occurring mid-season with at least 5 qualifying
-            games on each side. Caretaker appointments are flagged and can be excluded in the
-            interactive figures. All points-per-game figures are match-level averages within
+            games on each side. Caretaker appointments are flagged and can be excluded via the
+            filter in Figs. 2–3. All points-per-game figures are match-level averages within
             the specified window.
         </div>
     </footer>
@@ -526,14 +387,14 @@
 </article>
 
 <script>
-    // Reading progress bar
+    // ── Reading progress bar ──
     const bar = document.getElementById('progress-bar');
     window.addEventListener('scroll', () => {
         const h = document.documentElement;
         bar.style.width = Math.min(100, (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100) + '%';
     }, { passive: true });
 
-    // Side nav active state via IntersectionObserver
+    // ── Side nav active state via IntersectionObserver ──
     const navItems = document.querySelectorAll('.nav-item');
     const sections = document.querySelectorAll('[id^="section-"]');
 
@@ -549,7 +410,6 @@
 
     sections.forEach(s => obs.observe(s));
 </script>
-
 
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script type="module" src="app.js"></script>

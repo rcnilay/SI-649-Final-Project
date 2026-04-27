@@ -357,6 +357,8 @@ const radarData = await d3.json("data/radar_data.json");
 const CRESTS = {
     'Arsenal':'https://resources.premierleague.com/premierleague/badges/t3.png',
     'Aston Villa':'https://resources.premierleague.com/premierleague/badges/t7.png',
+    'Bournemouth':'https://resources.premierleague.com/premierleague/badges/t91.png',
+    'Brentford':'https://resources.premierleague.com/premierleague/badges/t94.png',
     'Brighton':'https://resources.premierleague.com/premierleague/badges/t36.png',
     'Burnley':'https://resources.premierleague.com/premierleague/badges/t90.png',
     'Chelsea':'https://resources.premierleague.com/premierleague/badges/t8.png',
@@ -368,11 +370,13 @@ const CRESTS = {
     'Leeds':'https://resources.premierleague.com/premierleague/badges/t2.png',
     'Leicester':'https://resources.premierleague.com/premierleague/badges/t13.png',
     'Liverpool':'https://resources.premierleague.com/premierleague/badges/t14.png',
+    'Man City':'https://resources.premierleague.com/premierleague/badges/t43.png',
     'Man United':'https://resources.premierleague.com/premierleague/badges/t1.png',
     'Middlesbrough':'https://resources.premierleague.com/premierleague/badges/t25.png',
     'Newcastle':'https://resources.premierleague.com/premierleague/badges/t4.png',
     'Norwich':'https://resources.premierleague.com/premierleague/badges/t45.png',
     "Nott'm Forest":'https://resources.premierleague.com/premierleague/badges/t17.png',
+    'QPR':'https://resources.premierleague.com/premierleague/badges/t52.png',
     'Sheffield United':'https://resources.premierleague.com/premierleague/badges/t49.png',
     'Southampton':'https://resources.premierleague.com/premierleague/badges/t20.png',
     'Stoke':'https://resources.premierleague.com/premierleague/badges/t110.png',
@@ -382,6 +386,61 @@ const CRESTS = {
     'Watford':'https://resources.premierleague.com/premierleague/badges/t57.png',
     'West Brom':'https://resources.premierleague.com/premierleague/badges/t35.png',
     'West Ham':'https://resources.premierleague.com/premierleague/badges/t21.png',
+    'Wolves':  'https://resources.premierleague.com/premierleague/badges/t39.png',
+};
+
+// ── Manager headshots (Wikimedia Commons) — falls back to silhouette on error ──
+const HEADSHOTS = {
+    'Jose Mourinho':       "https://commons.wikimedia.org/wiki/Special:FilePath/Jose_Mourinho%2714.JPG?width=120",
+    'Jurgen Klopp':        "https://commons.wikimedia.org/wiki/Special:FilePath/J%C3%BCrgen_Klopp_(cropped).jpg?width=120",
+    'Pep Guardiola':       "https://commons.wikimedia.org/wiki/Special:FilePath/Pep_Guardiola_2015.jpg?width=120",
+    'Thomas Tuchel':       "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas_Tuchel.jpg?width=120",
+    'Mauricio Pochettino': "https://commons.wikimedia.org/wiki/Special:FilePath/Mauricio_Pochettino_2016_(cropped).jpg?width=120",
+    'Arsene Wenger':       "https://commons.wikimedia.org/wiki/Special:FilePath/Arsene_Wenger.JPG?width=120",
+    'Antonio Conte':       "https://commons.wikimedia.org/wiki/Special:FilePath/20150616_Antonio_Conte.jpg?width=120",
+    'Claudio Ranieri':     "https://commons.wikimedia.org/wiki/Special:FilePath/Claudio_Ranieri_Inter_(cropped).jpg?width=120",
+    'Rafael Benitez':      "https://commons.wikimedia.org/wiki/Special:FilePath/Rafa_Benitez.JPG?width=120",
+    'Ole Gunnar Solskjaer':"https://commons.wikimedia.org/wiki/Special:FilePath/Ole_Gunnar_Solskjaer_Cardiff_manager_cropped.jpg?width=120",
+    'Frank Lampard':       "https://commons.wikimedia.org/wiki/Special:FilePath/Frank_Lampard.JPG?width=120",
+    'Roberto Martinez':    "https://commons.wikimedia.org/wiki/Special:FilePath/Roberto_Mart%C3%ADnez_2010.jpg?width=120",
+    'Ronald Koeman':       "https://commons.wikimedia.org/wiki/Special:FilePath/Ronald_Koeman_20140923.jpg?width=120",
+    'Manuel Pellegrini':   "https://commons.wikimedia.org/wiki/Special:FilePath/Manuel_Pellegrini_2012.JPG?width=120",
+    'Brendan Rodgers':     "https://commons.wikimedia.org/wiki/Special:FilePath/Brendan_Rodgers_2014_(cropped).jpg?width=120",
+    'Eddie Howe':          "https://commons.wikimedia.org/wiki/Special:FilePath/Eddie_Howe_2015.jpg?width=120",
+    'Graham Potter':       "https://commons.wikimedia.org/wiki/Special:FilePath/Graham_Potter%2C_Brighton_%26_Hove_Albion_vs_RCD_Espanyol%2C_30_July_2022_(1)_(cropped).jpg?width=120",
+    'Unai Emery':          "https://commons.wikimedia.org/wiki/Special:FilePath/Unai_Emery.JPG?width=120",
+    'Carlo Ancelotti':     "https://commons.wikimedia.org/wiki/Special:FilePath/Carlo_Ancelotti_2016.jpg?width=120",
+    'David Moyes':         "https://commons.wikimedia.org/wiki/Special:FilePath/David_Moyes_2025.jpg?width=120",
+    'Sam Allardyce':       "https://commons.wikimedia.org/wiki/Special:FilePath/Sam_Allardyce_2009.jpg?width=120",
+    'Tony Pulis':          "https://commons.wikimedia.org/wiki/Special:FilePath/Tony_Pulis.jpg?width=120",
+    'Maurizio Sarri':      "https://commons.wikimedia.org/wiki/Special:FilePath/Maurizio_Sarri_2019.jpg?width=120",
+    'Sean Dyche':          "https://commons.wikimedia.org/wiki/Special:FilePath/Sean_Dyche_2016.jpg?width=120",
+    'Alan Pardew':         "https://commons.wikimedia.org/wiki/Special:FilePath/Alan_Pardew_2014.jpg?width=120",
+    'Roy Hodgson':         "https://commons.wikimedia.org/wiki/Special:FilePath/Roy_Hodgson_2010.jpg?width=120",
+    'Steve Bruce':         "https://commons.wikimedia.org/wiki/Special:FilePath/Steve_Bruce_2016.jpg?width=120",
+    'Mark Hughes':         "https://commons.wikimedia.org/wiki/Special:FilePath/Mark_Hughes_2012.jpg?width=120",
+    'Louis van Gaal':      "https://commons.wikimedia.org/wiki/Special:FilePath/Louis_van_Gaal_2014.jpg?width=120",
+    'Nuno Espirito Santo': "https://commons.wikimedia.org/wiki/Special:FilePath/Nuno_Esp%C3%ADrito_Santo_2019_(cropped).jpg?width=120",
+    'Chris Wilder':        "https://commons.wikimedia.org/wiki/Special:FilePath/Chris_Wilder_2019.jpg?width=120",
+    'Dean Smith':          "https://commons.wikimedia.org/wiki/Special:FilePath/Dean_Smith_2019.jpg?width=120",
+    'Scott Parker':        "https://commons.wikimedia.org/wiki/Special:FilePath/Scott_Parker_2020.jpg?width=120",
+    'Patrick Vieira':      "https://commons.wikimedia.org/wiki/Special:FilePath/Patrick_Vieira.jpg?width=120",
+    'Slavisa Jokanovic':   "https://commons.wikimedia.org/wiki/Special:FilePath/Slavisa_Jokanovic.jpg?width=120",
+    'Paul Clement':        "https://commons.wikimedia.org/wiki/Special:FilePath/Paul_Clement_2017.jpg?width=120",
+    'Walter Mazzarri':     "https://commons.wikimedia.org/wiki/Special:FilePath/Walter_Mazzarri.jpg?width=120",
+    'Aitor Karanka':       "https://commons.wikimedia.org/wiki/Special:FilePath/Aitor_Karanka.jpg?width=120",
+    'Marco Silva':         "https://commons.wikimedia.org/wiki/Special:FilePath/Marco_Silva_2017.jpg?width=120",
+    'Bob Bradley':         "https://commons.wikimedia.org/wiki/Special:FilePath/Bob_Bradley.jpg?width=120",
+    'David Wagner':        "https://commons.wikimedia.org/wiki/Special:FilePath/David_Wagner_2017.jpg?width=120",
+    'Nigel Pearson':       "https://commons.wikimedia.org/wiki/Special:FilePath/Nigel_Pearson_2014.jpg?width=120",
+    'Paul Lambert':        "https://commons.wikimedia.org/wiki/Special:FilePath/Paul_Lambert_2012.jpg?width=120",
+    'Roberto Di Matteo':   "https://commons.wikimedia.org/wiki/Special:FilePath/Roberto_Di_Matteo_2016.jpg?width=120",
+    'Martin O\'Neill':     "https://commons.wikimedia.org/wiki/Special:FilePath/Martin_O%27Neill.jpg?width=120",
+    'Bruno Lage':          "https://commons.wikimedia.org/wiki/Special:FilePath/Bruno_Lage_2021.jpg?width=120",
+    'Tim Sherwood':        "https://commons.wikimedia.org/wiki/Special:FilePath/Tim_Sherwood_2014.jpg?width=120",
+    'Ralf Rangnick':       "https://commons.wikimedia.org/wiki/Special:FilePath/Ralf_Rangnick_2021.jpg?width=120",
+    'Erik ten Hag':        "https://commons.wikimedia.org/wiki/Special:FilePath/Erik_ten_Hag_2022.jpg?width=120",
+    'Ange Postecoglou':    "https://commons.wikimedia.org/wiki/Special:FilePath/Ange_Postecoglou_2023.jpg?width=120",
 };
 
 const SHORT_NAMES = {
@@ -576,3 +635,420 @@ function selectRadarEvent(evt, idx) {
     document.getElementById("radar-panel").classList.add("show");
     updateRadar(evt);
 }
+
+
+// ============================================================================
+// FIG 4 — Scatter: Before vs. After (all 159 changes)
+// ============================================================================
+
+// ── State ──
+let s4Teams          = new Set();  // highlighted teams; empty = all equal
+let s4Metric         = "ppg";      // "ppg" | "gd"
+let s4ShowCaretakers = true;
+let s4Window         = 5;
+let s4ActiveId       = null;       // change_id of the currently selected dot
+
+// ── SVG setup ──
+const margin4 = { top: 40, right: 30, bottom: 60, left: 50 };
+const width4  = 322;
+const height4 = 322;
+
+const svg4 = d3.select("#fig4")
+    .append("svg")
+    .attr("width",  width4  + margin4.left + margin4.right)
+    .attr("height", height4 + margin4.top  + margin4.bottom);
+
+const g4 = svg4.append("g")
+    .attr("transform", `translate(${margin4.left},${margin4.top})`);
+
+const xAxisG4 = g4.append("g").attr("class", "x-axis")
+    .attr("transform", `translate(0,${height4})`);
+const yAxisG4 = g4.append("g").attr("class", "y-axis");
+
+const diagG4  = g4.append("g");  // diagonal + zero lines
+const dotsG4  = g4.append("g");  // data dots
+const annotG4 = g4.append("g");  // quadrant annotations — must be last so text sits above dots
+
+const xLabel4 = svg4.append("text")
+    .attr("x", margin4.left + width4 / 2)
+    .attr("y", margin4.top + height4 + 55)
+    .attr("text-anchor", "middle")
+    .style("font-size", "14px")
+    .style("font-family", "sans-serif")
+    .attr("fill", "#444");
+
+const yLabel4 = svg4.append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("x", -(margin4.top + height4 / 2))
+    .attr("y", 14)
+    .attr("text-anchor", "middle")
+    .style("font-size", "14px")
+    .style("font-family", "sans-serif")
+    .attr("fill", "#444");
+
+// ── Clip path: keeps dots inside the plot area during zoom ──
+svg4.append("defs")
+    .append("clipPath").attr("id", "scatter-clip")
+    .append("rect").attr("width", width4).attr("height", height4);
+
+diagG4.attr("clip-path", "url(#scatter-clip)");
+dotsG4.attr("clip-path", "url(#scatter-clip)");
+
+// ── Zoom state (base scales, set by drawFig4 on each redraw) ──
+let x4ref = null, y4ref = null, lo4 = 0, hi4 = 3;
+
+// ── Zoom behaviour ──
+const zoom4 = d3.zoom()
+    .scaleExtent([1, 12])
+    .on("zoom", function(event) {
+        if (!x4ref) return;
+        const t  = event.transform;
+        const xz = t.rescaleX(x4ref);
+        const yz = t.rescaleY(y4ref);
+
+        xAxisG4.call(d3.axisBottom(xz).ticks(5));
+        yAxisG4.call(d3.axisLeft(yz).ticks(5));
+
+        dotsG4.selectAll("circle.dot")
+            .attr("cx", d => xz(d.bVal))
+            .attr("cy", d => yz(d.aVal));
+
+        diagG4.select(".diag-line")
+            .attr("x1", xz(lo4)).attr("y1", yz(lo4))
+            .attr("x2", xz(hi4)).attr("y2", yz(hi4));
+
+        const zx = diagG4.select(".zero-x");
+        if (!zx.empty()) {
+            zx.attr("x1", xz(0)).attr("x2", xz(0));
+            diagG4.select(".zero-y").attr("y1", yz(0)).attr("y2", yz(0));
+        }
+
+        if (s4ActiveId !== null) applyHighlight(s4ActiveId, s4Teams.size > 0);
+    });
+
+svg4.call(zoom4);
+svg4.on("dblclick.zoom", null); // disable default dblclick-to-zoom
+svg4.on("dblclick", () => svg4.transition().duration(350).call(zoom4.transform, d3.zoomIdentity));
+
+// ── Club grid (multi-select toggle) ──
+{
+    const teams = [...new Set(changesData.map(d => d.team))].sort();
+    const grid  = document.getElementById("scatter-club-grid");
+
+    teams.forEach(team => {
+        const btn  = document.createElement("button");
+        btn.className    = "club-btn";
+        btn.dataset.team = team;
+
+        const img = document.createElement("img");
+        img.src   = CRESTS[team] || "";
+        img.alt   = "";
+        img.onerror = function () { this.style.display = "none"; };
+
+        const span = document.createElement("span");
+        span.textContent = SHORT_NAMES[team] || team;
+
+        btn.appendChild(img);
+        btn.appendChild(span);
+        btn.addEventListener("click", () => {
+            if (s4Teams.has(team)) {
+                s4Teams.delete(team);
+                btn.classList.remove("active");
+            } else {
+                s4Teams.add(team);
+                btn.classList.add("active");
+            }
+            drawFig4(s4Window);
+        });
+        grid.appendChild(btn);
+    });
+}
+
+// ── Metric buttons ──
+document.querySelectorAll(".metric-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        s4Metric = btn.dataset.metric;
+        document.querySelectorAll(".metric-btn").forEach(b =>
+            b.classList.toggle("active", b.dataset.metric === s4Metric));
+        drawFig4(s4Window);
+    });
+});
+
+// ── Caretaker toggle ──
+document.getElementById("btn-caretaker").addEventListener("click", function () {
+    s4ShowCaretakers = !s4ShowCaretakers;
+    this.classList.toggle("hidden", !s4ShowCaretakers);
+    this.textContent = s4ShowCaretakers ? "Showing Caretakers" : "Hiding Caretakers";
+    drawFig4(s4Window);
+});
+
+// ── Window slider ──
+document.getElementById("scatter-slider").addEventListener("input", function () {
+    s4Window = +this.value;
+    document.getElementById("scatter-window-label").textContent =
+        `${s4Window} game${s4Window === 1 ? "" : "s"}`;
+    drawFig4(s4Window);
+});
+
+// ── Data computation ──
+function computeS4Point(d, n) {
+    const games  = gamesByChange.get(d.change_id) || [];
+    const before = games.filter(g => g.game_number >= -n && g.game_number <= -1);
+    const after  = games.filter(g => g.game_number >= 1  && g.game_number <= n);
+    if (before.length === 0 || after.length === 0) return null;
+
+    const bPPG = d3.mean(before, g => g.points);
+    const aPPG = d3.mean(after,  g => g.points);
+    const bGD  = d3.mean(before, g => g.goals_for - g.goals_against);
+    const aGD  = d3.mean(after,  g => g.goals_for - g.goals_against);
+
+    const bVal = s4Metric === "ppg" ? bPPG : bGD;
+    const aVal = s4Metric === "ppg" ? aPPG : aGD;
+
+    return {
+        ...d, bVal, aVal, bPPG, aPPG, bGD, aGD,
+        bW: before.filter(g => g.result === "W").length,
+        bD: before.filter(g => g.result === "D").length,
+        bL: before.filter(g => g.result === "L").length,
+        aW: after.filter(g => g.result === "W").length,
+        aD: after.filter(g => g.result === "D").length,
+        aL: after.filter(g => g.result === "L").length,
+        nBefore: before.length, nAfter: after.length,
+    };
+}
+
+// ── Draw ──
+function drawFig4(n) {
+    const pts = changesData
+        .filter(d => d.before_games >= n && d.after_games >= n)
+        .filter(d => s4ShowCaretakers || !d.is_caretaker)
+        .map(d => computeS4Point(d, n))
+        .filter(Boolean);
+
+    // Symmetric domain so diagonal is truly y=x
+    const allVals = pts.flatMap(p => [p.bVal, p.aVal]);
+    let lo = Math.min(...allVals), hi = Math.max(...allVals);
+    if (s4Metric === "ppg") { lo = Math.min(lo, 0); hi = Math.max(hi, 3); }
+    const pad = (hi - lo) * 0.07;
+    lo -= pad; hi += pad;
+
+    const x4 = d3.scaleLinear().domain([lo, hi]).range([0, width4]);
+    const y4 = d3.scaleLinear().domain([lo, hi]).range([height4, 0]);
+
+    xAxisG4.call(d3.axisBottom(x4).ticks(5));
+    yAxisG4.call(d3.axisLeft(y4).ticks(5));
+
+    x4ref = x4; y4ref = y4; lo4 = lo; hi4 = hi;
+
+    const metricLabel = s4Metric === "ppg" ? "Points Per Game" : "Goal Diff Per Game";
+    xLabel4.text(`Before change — ${metricLabel}`);
+    yLabel4.text(`After change — ${metricLabel}`);
+
+    // Diagonal y = x
+    diagG4.selectAll("*").remove();
+    diagG4.append("line")
+        .attr("class", "diag-line")
+        .attr("x1", x4(lo)).attr("y1", y4(lo))
+        .attr("x2", x4(hi)).attr("y2", y4(hi))
+        .attr("stroke", "#bbb").attr("stroke-width", 1.5)
+        .attr("stroke-dasharray", "5,4");
+
+    // Zero reference lines for goal differential
+    if (s4Metric === "gd" && lo < 0 && hi > 0) {
+        diagG4.append("line")
+            .attr("class", "zero-x")
+            .attr("x1", x4(0)).attr("y1", 0)
+            .attr("x2", x4(0)).attr("y2", height4)
+            .attr("stroke", "#e0ddd8").attr("stroke-width", 1);
+        diagG4.append("line")
+            .attr("class", "zero-y")
+            .attr("x1", 0).attr("y1", y4(0))
+            .attr("x2", width4).attr("y2", y4(0))
+            .attr("stroke", "#e0ddd8").attr("stroke-width", 1);
+    }
+
+    // Quadrant labels
+    annotG4.selectAll("*").remove();
+    annotG4.append("text")
+        .attr("x", 6).attr("y", 16)
+        .style("font-size", "11px").style("font-family", "sans-serif")
+        .attr("fill", "#4a9e6b").attr("font-weight", "600")
+        .attr("stroke", "white").attr("stroke-width", "4")
+        .style("paint-order", "stroke fill")
+        .text("▲ Improved");
+    annotG4.append("text")
+        .attr("x", width4 - 6).attr("y", height4 - 6)
+        .attr("text-anchor", "end")
+        .style("font-size", "11px").style("font-family", "sans-serif")
+        .attr("fill", "#c0392b").attr("font-weight", "600")
+        .attr("stroke", "white").attr("stroke-width", "4")
+        .style("paint-order", "stroke fill")
+        .text("▼ Declined");
+
+    // Count label
+    annotG4.append("text")
+        .attr("x", width4).attr("y", -28)
+        .attr("text-anchor", "end")
+        .style("font-size", "12px").style("font-family", "sans-serif")
+        .attr("fill", "#888")
+        .text(`${pts.length} changes`);
+
+    // Dots
+    const anySelected = s4Teams.size > 0;
+
+    dotsG4.selectAll("circle.dot")
+        .data(pts, d => d.change_id)
+        .join("circle")
+        .attr("class", "dot")
+        .attr("cx", d => x4(d.bVal))
+        .attr("cy", d => y4(d.aVal))
+        .attr("fill", d => d.aVal >= d.bVal ? "#4a9e6b" : "#c0392b")
+        .attr("stroke", "#fff")
+        .attr("stroke-width", 1)
+        .attr("r", d => (anySelected && s4Teams.has(d.team)) ? 7 : 5.5)
+        .attr("opacity", d => {
+            if (!anySelected) return 0.65;
+            return s4Teams.has(d.team) ? 0.92 : 0.08;
+        })
+        .style("filter", "none")
+        .style("cursor", d => (anySelected && !s4Teams.has(d.team)) ? "default" : "pointer")
+        .on("click", function (event, d) {
+            if (anySelected && !s4Teams.has(d.team)) return;
+            event.stopPropagation();
+            s4ActiveId = d.change_id;
+            applyHighlight(d.change_id, anySelected);
+            showS4Info(d);
+        });
+
+    // Click SVG background to clear selection
+    svg4.on("click", () => {
+        s4ActiveId = null;
+        const _any = s4Teams.size > 0;
+        dotsG4.selectAll("circle.dot")
+            .attr("r", d => (_any && s4Teams.has(d.team)) ? 7 : 5.5)
+            .attr("stroke", "#fff")
+            .attr("stroke-width", 1)
+            .style("filter", "none");
+        document.getElementById("scatter-swap").classList.remove("show");
+        document.getElementById("scatter-left-empty").style.display = "";
+        document.getElementById("scatter-stats").classList.remove("show");
+        document.getElementById("scatter-right-empty").style.display = "";
+    });
+
+    // Refresh stats panel; clear selection if the active point was filtered out
+    if (s4ActiveId !== null) {
+        const activePt = pts.find(p => p.change_id === s4ActiveId);
+        if (activePt) {
+            showS4Info(activePt);
+        } else {
+            s4ActiveId = null;
+            document.getElementById("scatter-swap").classList.remove("show");
+            document.getElementById("scatter-left-empty").style.display = "";
+            document.getElementById("scatter-stats").classList.remove("show");
+            document.getElementById("scatter-right-empty").style.display = "";
+        }
+    }
+
+    // Reset zoom to identity — the zoom handler repositions dots and re-applies highlight
+    svg4.call(zoom4.transform, d3.zoomIdentity);
+}
+
+function applyHighlight(changeId, anySelected) {
+    // Reset all dots to base style first
+    dotsG4.selectAll("circle.dot")
+        .attr("r", p => {
+            if (p.change_id === changeId) return 9;
+            return (anySelected && s4Teams.has(p.team)) ? 7 : 5.5;
+        })
+        .attr("stroke", "#fff")
+        .attr("stroke-width", 1)
+        .style("filter", "none");
+    // Apply strong highlight to the active dot
+    dotsG4.selectAll("circle.dot")
+        .filter(p => p.change_id === changeId)
+        .attr("stroke", "#1a1a1a")
+        .attr("stroke-width", 3)
+        .style("filter", "drop-shadow(0 0 5px rgba(0,0,0,0.55)) drop-shadow(0 0 2px rgba(0,0,0,0.8))");
+}
+
+// ── Generic manager silhouette SVG ──
+function silhouetteSVG() {
+    return `<svg viewBox="0 0 50 50" width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="25" cy="25" r="25" fill="#e4e1db"/>
+        <circle cx="25" cy="17" r="8" fill="#c4bfb6"/>
+        <path d="M7,47 Q8,31 25,31 Q42,31 43,47 Z" fill="#c4bfb6"/>
+        <circle cx="38" cy="38" r="9" fill="#fafaf8" stroke="#d4d0c8" stroke-width="1.5"/>
+        <text x="38" y="42.5" text-anchor="middle" font-size="11"
+              font-family="sans-serif" fill="#aaa" font-weight="bold">?</text>
+    </svg>`;
+}
+
+// ── Set manager avatar — headshot if available, silhouette otherwise ──
+function setManagerAvatar(divEl, name) {
+    const url = HEADSHOTS[name];
+    if (url) {
+        const img = document.createElement("img");
+        img.src = url;
+        img.alt = name;
+        img.style.cssText = "width:50px;height:50px;border-radius:50%;object-fit:cover;object-position:top center;display:block";
+        img.onerror = () => { divEl.innerHTML = silhouetteSVG(); };
+        divEl.innerHTML = "";
+        divEl.appendChild(img);
+    } else {
+        divEl.innerHTML = silhouetteSVG();
+    }
+}
+
+// ── Populate side panels on dot click ──
+function showS4Info(d) {
+    const sign = v => v >= 0 ? "+" : "";
+    const f2   = v => v.toFixed(2);
+
+    // ── Left panel: club crest + manager swap ──
+    document.getElementById("scatter-left-empty").style.display = "none";
+
+    const crestEl = document.getElementById("swap-crest");
+    crestEl.src = CRESTS[d.team] || "";
+    crestEl.style.display = CRESTS[d.team] ? "" : "none";
+
+    document.getElementById("swap-club-name").textContent = d.team;
+    setManagerAvatar(document.getElementById("swap-old-avatar"), d.old_manager);
+    document.getElementById("swap-old-name").textContent = d.old_manager;
+    setManagerAvatar(document.getElementById("swap-new-avatar"), d.new_manager);
+    document.getElementById("swap-new-name").textContent = d.new_manager;
+    document.getElementById("swap-meta").textContent =
+        `${d.season} · ${d.change_date}` + (d.is_caretaker ? "\nCaretaker" : "");
+
+    document.getElementById("scatter-swap").classList.add("show");
+
+    // ── Right panel: stats breakdown ──
+    document.getElementById("scatter-right-empty").style.display = "none";
+
+    const ppgDiff = d.aPPG - d.bPPG;
+    const gdDiff  = d.aGD  - d.bGD;
+    const ppgCls  = ppgDiff >= 0 ? "better" : "worse";
+    const gdCls   = gdDiff  >= 0 ? "better" : "worse";
+
+    document.getElementById("scatter-stats").innerHTML = `
+        <div class="stat-win">${s4Window} game window each side</div>
+        <div class="stat-block">
+            <div class="stat-block-label">Record</div>
+            <div class="stat-block-value">${d.bW}W–${d.bD}D–${d.bL}L</div>
+            <div class="stat-block-value" style="color:#888;font-size:.65rem">&#8595;</div>
+            <div class="stat-block-value">${d.aW}W–${d.aD}D–${d.aL}L</div>
+        </div>
+        <div class="stat-block">
+            <div class="stat-block-label">Pts / Game</div>
+            <div class="stat-block-value">${f2(d.bPPG)} &#8594; ${f2(d.aPPG)}</div>
+            <div class="stat-block-delta ${ppgCls}">${sign(ppgDiff)}${f2(ppgDiff)} ${ppgDiff >= 0 ? "&#9650;" : "&#9660;"}</div>
+        </div>
+        <div class="stat-block">
+            <div class="stat-block-label">Goal Diff / Game</div>
+            <div class="stat-block-value">${f2(d.bGD)} &#8594; ${f2(d.aGD)}</div>
+            <div class="stat-block-delta ${gdCls}">${sign(gdDiff)}${f2(gdDiff)} ${gdDiff >= 0 ? "&#9650;" : "&#9660;"}</div>
+        </div>
+    `;
+    document.getElementById("scatter-stats").classList.add("show");
+}
+
+drawFig4(5);

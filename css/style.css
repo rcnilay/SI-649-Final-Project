@@ -189,6 +189,28 @@ h1 {
 }
 .byline-dot { color: rgba(255,255,255,0.2); }
 
+.authors {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.55rem;
+    font-family: var(--font-ui);
+    font-size: 0.78rem;
+    flex-wrap: wrap;
+}
+.authors-label {
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-size: 0.67rem;
+    font-weight: 600;
+}
+.author-name {
+    color: rgba(255,255,255,0.75);
+    font-weight: 500;
+}
+.authors-sep { color: rgba(255,255,255,0.2); }
+
 /* stat pills in header */
 .header-stats {
     display: flex;

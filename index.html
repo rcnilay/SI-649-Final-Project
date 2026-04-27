@@ -76,11 +76,16 @@
         </div>
     </header>
 
-    <!-- ── Body ── -->
-    <div class="article-body">
+        <p>In football, firing a manager is always a gamble. It disrupts training,
+        unsettles the squad, and costs money. Yet clubs do it constantly — betting
+        that the shock of a new voice and a fresh set of eyes will arrest a slide
+        and revive the team. This phenomenon has a name: the <em>manager bounce</em>.</p>
 
-        <p>In football, firing a manager is never just a personnel decision. It is a
-        signal that something is broken, patience has run out, and the club needs a reset.</p>
+        <p>The bounce is contentious. Critics argue it is little more than statistical
+        noise — a struggling team regressing to the mean regardless of who is in
+        the dugout. Proponents point to real examples: Spurs under Pochettino,
+        Leicester under Ranieri, Liverpool under Klopp. But what does the data
+        actually show across eleven full Premier League seasons?</p>
 
         <p>Fans often call what comes next the <em>manager bounce</em> — <strong>the short-term lift</strong>
         a team supposedly gets after a new manager arrives. The idea feels intuitive. A new
@@ -91,10 +96,11 @@
         <p>This project asks a simple question: <strong>does the manager bounce actually show up
         in the data?</strong></p>
 
-        <p>To test that, we looked at Premier League managerial changes from 2014 to 2026
-        and compared each team's points per game before and after the handover. Instead of
-        relying on one famous example, we align many manager changes around the same match
-        zero and look for the pattern underneath the noise.</p>
+        <p>By January 2021, Frank Lampard's Chelsea were in crisis. A summer transfer
+        window that cost the club over £200 million by bringing in Timo Werner, Kai
+        Havertz, and Ben Chilwell, had not translated into results. A run of one win
+        in five left Chelsea ninth in the table, and owner Roman Abramovich, who had
+        already fired eleven managers before Lampard, had seen enough.</p>
 
         <!-- ── Section 1: Case Study ── -->
         <h2 id="section-case"><span class="section-label">Case Study</span> Lampard to Tuchel</h2>
@@ -120,7 +126,6 @@
                 after Frank Lampard was replaced by Thomas Tuchel in January 2021.
                 Bar height shows points earned (3 = win, 1 = draw); losses are shown
                 as a stub at the baseline. The dashed line marks the handover.
-                Hover over any bar for match details.
                 <span class="legend">
                     <span class="legend-swatch" style="background:#4a9e6b"></span> Win &nbsp;
                     <span class="legend-swatch" style="background:#e8b84b"></span> Draw &nbsp;
@@ -157,7 +162,6 @@
 
         <figure id="fig2-container">
             <div id="fig2"></div>
-            <div id="bounce-callout" class="bounce-callout"></div>
             <figcaption>
                 <strong>Fig. 2</strong> — Distribution of change in points per game across all
                 qualifying manager changes. Bars right of zero represent improvement; bars left
@@ -236,7 +240,7 @@
                 </div>
                 <div class="radar-legend">
                     <span><span class="legend-swatch" style="background:#c0392b"></span> Before (outgoing)</span>
-                    <span><span class="legend-swatch" style="background:#2d7a4f"></span> After (incoming)</span>
+                    <span><span class="legend-swatch" style="background:#4a9e6b"></span> After (incoming)</span>
                 </div>
                 <div class="radar-svg-wrap">
                     <svg id="radar-svg" width="420" height="420"></svg>
@@ -249,7 +253,7 @@
                 </table>
             </div>
             <div class="empty-state" id="radar-empty">
-                <div class="big-arrow">↑</div>
+                <div class="big-arrow">&#8593;</div>
                 Pick a club above to explore its managerial changes.
             </div>
             <figcaption>
@@ -412,6 +416,6 @@
 </script>
 
 <script src="https://d3js.org/d3.v7.min.js"></script>
+<!-- Custom D3.js script to add visualizations -->
 <script type="module" src="app.js"></script>
-</body>
 </html>

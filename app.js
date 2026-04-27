@@ -55,16 +55,18 @@ function hideTip() { tooltip.style("display", "none"); }
 // ============================================================================
 // CONTROLS  (slider + caretaker toggle live inside fig2-container)
 // ============================================================================
+// Slider lives inside fig2 (histogram)
 
-const controlsBar = d3.select("#fig2-container")
+const sliderRow = d3.select("#fig2-container")
     .insert("div", "#fig2")
-    .attr("class", "controls-bar");
-
-const sliderRow = controlsBar.append("div").attr("class", "slider-row");
+    .attr("class", "slider-row");
 
 sliderRow.append("label")
     .attr("for", "window-slider")
-    .text("Window size:");
+    .text("Matches Before/After: ");
+
+const windowLabel = sliderRow.append("span")
+    .text("5 games");
 
 sliderRow.append("input")
     .attr("type", "range")
@@ -73,8 +75,9 @@ sliderRow.append("input")
     .attr("max", 15)
     .attr("value", 5)
     .on("input", function () {
-        windowLabel.text(`${this.value} game${this.value == 1 ? "" : "s"}`);
-        draw();
+        const n = +this.value;
+        windowLabel.text(`${n} game${n === 1 ? "" : "s"}`);
+        draw(n);
     });
 
 const windowLabel = sliderRow.append("span")
@@ -109,8 +112,12 @@ const svg1 = d3.select("#fig1")
 const g1 = svg1.append("g")
     .attr("transform", `translate(${margin1.left},${margin1.top})`);
 
-const xAxisG1 = g1.append("g").attr("class", "x-axis").attr("transform", `translate(0,${height1})`);
-const yAxisG1 = g1.append("g").attr("class", "y-axis");
+const xAxisG1 = g1.append("g")
+    .attr("class", "x-axis")
+    .attr("transform", `translate(0,${height1})`);
+
+const yAxisG1 = g1.append("g")
+    .attr("class", "y-axis");
 
 svg1.append("text")
     .attr("class", "x-axis-label")
@@ -146,8 +153,12 @@ const svg2 = d3.select("#fig2")
 const g2 = svg2.append("g")
     .attr("transform", `translate(${margin2.left},${margin2.top})`);
 
-const xAxisG2 = g2.append("g").attr("class", "x-axis").attr("transform", `translate(0,${height2})`);
-const yAxisG2 = g2.append("g").attr("class", "y-axis");
+const xAxisG2 = g2.append("g")
+    .attr("class", "x-axis")
+    .attr("transform", `translate(0,${height2})`);
+
+const yAxisG2 = g2.append("g")
+    .attr("class", "y-axis");
 
 svg2.append("text")
     .attr("class", "x-axis-label")
@@ -231,7 +242,7 @@ function drawFig1() {
     xAxisG1.call(d3.axisBottom(x).tickValues([-10, -5, -1, 1, 5, 10]));
     yAxisG1.call(d3.axisLeft(y).tickValues([0, 1, 3]));
 
-    const colorMap = { W: "#27ae60", D: "#e8b84b", L: "#c0392b" };
+    const colorMap = { W: "#4a9e6b", D: "#e8b84b", L: "#c0392b" };
     const MIN_H = 4;
 
     g1.selectAll("rect.bar")
@@ -243,28 +254,7 @@ function drawFig1() {
         .attr("y",      d => d.points === 0 ? height1 - MIN_H : y(d.points))
         .attr("height", d => d.points === 0 ? MIN_H : height1 - y(d.points))
         .attr("fill",   d => colorMap[d.result])
-        .attr("opacity", 0.85)
-        .style("cursor", "pointer")
-        .on("mouseover", (event, d) => {
-            const ha     = d.is_home ? "vs" : "@";
-            const score  = `${d.goals_for}–${d.goals_against}`;
-            const word   = { W: "Win", D: "Draw", L: "Loss" }[d.result];
-            const color  = colorMap[d.result];
-            const mgr    = d.game_number < 0 ? "Lampard" : "Tuchel";
-            showTip(
-                `<strong>${d.date}</strong><br>` +
-                `${ha} ${d.opponent}<br>` +
-                `Score: ${score} — <span style="color:${color};font-weight:600">${word}</span><br>` +
-                `<em>Under ${mgr}</em>`,
-                event
-            );
-            d3.select(event.currentTarget).attr("opacity", 1).attr("stroke", "#1a1a1a").attr("stroke-width", 1.5);
-        })
-        .on("mousemove", moveTip)
-        .on("mouseout", (event) => {
-            hideTip();
-            d3.select(event.currentTarget).attr("opacity", 0.85).attr("stroke", "none");
-        });
+        .attr("opacity", 0.85);
 
     // Dashed handover line
     const changeX = (x(-1) + x.bandwidth() + x(1)) / 2;
@@ -279,11 +269,13 @@ function drawFig1() {
         .attr("stroke-width", 1.5)
         .attr("stroke-dasharray", "4,3");
 
+    // Manager name annotations above the bars
     g1.selectAll("text.label-old")
         .data(["← Lampard"])
         .join("text")
         .attr("class", "label-old")
-        .attr("x", changeX - 8).attr("y", -12)
+        .attr("x", changeX - 8)
+        .attr("y", -12)
         .attr("text-anchor", "end")
         .style("font-size", "12px")
         .attr("fill", "#555")
@@ -293,7 +285,8 @@ function drawFig1() {
         .data(["Tuchel →"])
         .join("text")
         .attr("class", "label-new")
-        .attr("x", changeX + 8).attr("y", -12)
+        .attr("x", changeX + 8)
+        .attr("y", -12)
         .attr("text-anchor", "start")
         .style("font-size", "12px")
         .attr("fill", "#555")
@@ -305,21 +298,15 @@ function drawFig1() {
 // DRAW FIG 2 — Bounce Distribution Histogram
 // ============================================================================
 
-function drawFig2(n, excludeCaretaker) {
-    const qualifying = changesData.filter(d =>
-        d.before_games >= n && d.after_games >= n &&
-        (!excludeCaretaker || !d.is_caretaker)
-    );
-
-    const bounceItems = qualifying.map(d => {
-        const games  = gamesByChange.get(d.change_id) || [];
-        const before = games.filter(g => g.game_number >= -n && g.game_number <= -1);
-        const after  = games.filter(g => g.game_number >= 1  && g.game_number <= n);
-        const bounce = d3.mean(after, g => g.points) - d3.mean(before, g => g.points);
-        return { ...d, bounce };
-    });
-
-    const bounces = bounceItems.map(d => d.bounce);
+function drawFig2(n) {
+    const bounces = changesData
+        .filter(d => d.before_games >= n && d.after_games >= n)
+        .map(d => {
+            const games  = gamesByChange.get(d.change_id) || [];
+            const before = games.filter(g => g.game_number >= -n && g.game_number <= -1);
+            const after  = games.filter(g => g.game_number >= 1  && g.game_number <= n);
+            return d3.mean(after, g => g.points) - d3.mean(before, g => g.points);
+        });
 
     const x = d3.scaleLinear()
         .domain(d3.extent(bounces)).nice()
@@ -383,16 +370,8 @@ function drawFig2(n, excludeCaretaker) {
         .attr("class", "zero")
         .attr("x1", x(0)).attr("x2", x(0))
         .attr("y1", 0).attr("y2", height2)
-        .attr("stroke", "#333").attr("stroke-width", 2);
-
-    g2.selectAll("text.zero-label")
-        .data([0])
-        .join("text")
-        .attr("class", "zero-label")
-        .attr("x", x(0) + 4).attr("y", height2 - 6)
-        .attr("text-anchor", "start")
-        .style("font-size", "11px").attr("fill", "#888")
-        .text("no change");
+        .attr("stroke", "#333")
+        .attr("stroke-width", 2);
 
     const med = d3.median(bounces);
 
@@ -419,31 +398,36 @@ function drawFig2(n, excludeCaretaker) {
 
     const nBetter = bounces.filter(b => b >= 0).length;
     const nWorse  = bounces.filter(b => b < 0).length;
-    const nTotal  = bounces.length;
-    const pct     = Math.round(100 * nBetter / nTotal);
+    const nTotal  = nBetter + nWorse;
 
     g2.selectAll("text.count-better")
         .data([nBetter])
-        .join("text").attr("class", "count-better")
+        .join("text")
+        .attr("class", "count-better")
         .attr("x", width2).attr("y", 14)
         .attr("text-anchor", "end")
-        .style("font-size", "13px").attr("fill", "#27ae60")
+        .style("font-size", "13px")
+        .attr("fill", "#4a9e6b")
         .text(`${nBetter} improved`);
 
     g2.selectAll("text.count-worse")
         .data([nWorse])
-        .join("text").attr("class", "count-worse")
+        .join("text")
+        .attr("class", "count-worse")
         .attr("x", width2).attr("y", 32)
         .attr("text-anchor", "end")
-        .style("font-size", "13px").attr("fill", "#c0392b")
+        .style("font-size", "13px")
+        .attr("fill", "#c0392b")
         .text(`${nWorse} declined`);
 
     g2.selectAll("text.count-total")
         .data([nTotal])
-        .join("text").attr("class", "count-total")
+        .join("text")
+        .attr("class", "count-total")
         .attr("x", width2).attr("y", -4)
         .attr("text-anchor", "end")
-        .style("font-size", "13px").attr("fill", "#000000")
+        .style("font-size", "13px")
+        .attr("fill", "#000000")
         .text(`${nTotal} Total Managers`);
 
     // Dynamic callout below the chart
@@ -668,6 +652,7 @@ function drawFig4(n, excludeCaretaker) {
     });
 }
 
+draw(5);
 
 // ============================================================================
 // MASTER DRAW
@@ -685,11 +670,12 @@ draw();
 
 
 // ============================================================================
-// FIG 3 — Radar Explorer  (unchanged logic, renumbered in HTML to Fig 4)
+// FIG 3 — Radar Explorer
 // ============================================================================
 
 const radarData = await d3.json("data/radar_data.json");
 
+// ── Club crests (PL badge CDN) ──
 const CRESTS = {
     'Arsenal':'https://resources.premierleague.com/premierleague/badges/t3.png',
     'Aston Villa':'https://resources.premierleague.com/premierleague/badges/t7.png',
@@ -722,10 +708,10 @@ const CRESTS = {
     'Watford':'https://resources.premierleague.com/premierleague/badges/t57.png',
     'West Brom':'https://resources.premierleague.com/premierleague/badges/t35.png',
     'West Ham':'https://resources.premierleague.com/premierleague/badges/t21.png',
-    'Wolves':'https://resources.premierleague.com/premierleague/badges/t39.png',
+    'Wolves':  'https://resources.premierleague.com/premierleague/badges/t39.png',
 };
 
-// Manager headshots (Wikimedia Commons)
+// ── Manager headshots (Wikimedia Commons) — falls back to silhouette on error ──
 const HEADSHOTS = {
     'Jose Mourinho':       "https://commons.wikimedia.org/wiki/Special:FilePath/Jose_Mourinho%2714.JPG?width=120",
     'Jurgen Klopp':        "https://commons.wikimedia.org/wiki/Special:FilePath/J%C3%BCrgen_Klopp_(cropped).jpg?width=120",
@@ -764,6 +750,19 @@ const HEADSHOTS = {
     'Erik ten Hag':        "https://commons.wikimedia.org/wiki/Special:FilePath/Erik_ten_Hag_2022.jpg?width=120",
     'Ange Postecoglou':    "https://commons.wikimedia.org/wiki/Special:FilePath/Ange_Postecoglou_2023.jpg?width=120",
     'Ralf Rangnick':       "https://commons.wikimedia.org/wiki/Special:FilePath/Ralf_Rangnick_2021.jpg?width=120",
+    'Slavisa Jokanovic':   "https://commons.wikimedia.org/wiki/Special:FilePath/Slavisa_Jokanovic.jpg?width=120",
+    'Paul Clement':        "https://commons.wikimedia.org/wiki/Special:FilePath/Paul_Clement_2017.jpg?width=120",
+    'Walter Mazzarri':     "https://commons.wikimedia.org/wiki/Special:FilePath/Walter_Mazzarri.jpg?width=120",
+    'Aitor Karanka':       "https://commons.wikimedia.org/wiki/Special:FilePath/Aitor_Karanka.jpg?width=120",
+    'Marco Silva':         "https://commons.wikimedia.org/wiki/Special:FilePath/Marco_Silva_2017.jpg?width=120",
+    'Bob Bradley':         "https://commons.wikimedia.org/wiki/Special:FilePath/Bob_Bradley.jpg?width=120",
+    'David Wagner':        "https://commons.wikimedia.org/wiki/Special:FilePath/David_Wagner_2017.jpg?width=120",
+    'Nigel Pearson':       "https://commons.wikimedia.org/wiki/Special:FilePath/Nigel_Pearson_2014.jpg?width=120",
+    'Paul Lambert':        "https://commons.wikimedia.org/wiki/Special:FilePath/Paul_Lambert_2012.jpg?width=120",
+    'Roberto Di Matteo':   "https://commons.wikimedia.org/wiki/Special:FilePath/Roberto_Di_Matteo_2016.jpg?width=120",
+    'Martin O\'Neill':     "https://commons.wikimedia.org/wiki/Special:FilePath/Martin_O%27Neill.jpg?width=120",
+    'Bruno Lage':          "https://commons.wikimedia.org/wiki/Special:FilePath/Bruno_Lage_2021.jpg?width=120",
+    'Tim Sherwood':        "https://commons.wikimedia.org/wiki/Special:FilePath/Tim_Sherwood_2014.jpg?width=120"
 };
 
 
@@ -785,6 +784,7 @@ function drawRadarFrame(axes) {
     const g = svg.append("g").attr("transform", `translate(${RCX},${RCY})`);
     const n = axes.length;
 
+    // Concentric rings
     for (let lv = 1; lv <= LEVELS; lv++) {
         const r = RADIUS * lv / LEVELS;
         const pts = d3.range(n).map(i => {
@@ -798,6 +798,7 @@ function drawRadarFrame(axes) {
             .attr("stroke-width", lv === LEVELS ? 1.5 : 0.7);
     }
 
+    // Spokes
     for (let i = 0; i < n; i++) {
         const a = radarAngle(i, n);
         g.append("line")
@@ -807,6 +808,7 @@ function drawRadarFrame(axes) {
             .attr("stroke", "#ddd").attr("stroke-width", 0.7);
     }
 
+    // Axis labels
     for (let i = 0; i < n; i++) {
         const a = radarAngle(i, n);
         const lx = (RADIUS + 22) * Math.cos(a);
@@ -1116,7 +1118,7 @@ svg5.on("dblclick", () => svg5.transition().duration(350).call(zoom5.transform, 
     });
 }
 
-// Metric buttons
+// ── Metric buttons ──
 document.querySelectorAll(".metric-btn").forEach(btn => {
     btn.addEventListener("click", () => {
         s5Metric = btn.dataset.metric;
@@ -1126,7 +1128,7 @@ document.querySelectorAll(".metric-btn").forEach(btn => {
     });
 });
 
-// Caretaker toggle
+// ── Caretaker toggle ──
 document.getElementById("btn-caretaker").addEventListener("click", function () {
     s5ShowCaretakers = !s5ShowCaretakers;
     this.classList.toggle("hidden", !s5ShowCaretakers);
@@ -1172,6 +1174,7 @@ function drawFig5(n) {
         .map(d => computeS5Point(d, n))
         .filter(Boolean);
 
+    // Symmetric domain so diagonal is truly y=x
     const allVals = pts.flatMap(p => [p.bVal, p.aVal]);
     let lo = Math.min(...allVals), hi = Math.max(...allVals);
     if (s5Metric === "ppg") { lo = Math.min(lo, 0); hi = Math.max(hi, 3); }
@@ -1301,6 +1304,7 @@ function applyS5Highlight(changeId, anySelected) {
         .style("filter", "drop-shadow(0 0 5px rgba(0,0,0,.55)) drop-shadow(0 0 2px rgba(0,0,0,.8))");
 }
 
+// ── Generic manager silhouette SVG ──
 function silhouetteSVG() {
     return `<svg viewBox="0 0 50 50" width="50" height="50" xmlns="http://www.w3.org/2000/svg">
         <circle cx="25" cy="25" r="25" fill="#e4e1db"/>
@@ -1312,6 +1316,7 @@ function silhouetteSVG() {
     </svg>`;
 }
 
+// ── Set manager avatar — headshot if available, silhouette otherwise ──
 function setManagerAvatar(divEl, name) {
     const url = HEADSHOTS[name];
     if (url) {

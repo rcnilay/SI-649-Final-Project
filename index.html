@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Manager Bounce Premier League 2014-2026</title>
+    <title>The Manager Bounce</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
     /* ── Fig 3: Radar Explorer ── */
@@ -132,124 +132,52 @@
     .stat-block-delta.better { color: #4a9e6b; }
     .stat-block-delta.worse  { color: #c0392b; }
     </style>
-
 </head>
 <body>
-
-<!-- Reading progress bar -->
-<div id="progress-bar"></div>
-
-<!-- ── Side navigation ── -->
-<nav id="side-nav" aria-label="Article sections">
-    <a class="nav-item" href="#section-intro"   data-section="section-intro">
-        <span class="nav-dot"></span>
-        <span class="nav-label">Introduction</span>
-    </a>
-    <a class="nav-item" href="#section-case"    data-section="section-case">
-        <span class="nav-dot"></span>
-        <span class="nav-label">Case Study</span>
-    </a>
-    <a class="nav-item" href="#section-evidence" data-section="section-evidence">
-        <span class="nav-dot"></span>
-        <span class="nav-label">The Evidence</span>
-    </a>
-    <a class="nav-item" href="#section-trajectory" data-section="section-trajectory">
-        <span class="nav-dot"></span>
-        <span class="nav-label">Trajectory</span>
-    </a>
-    <a class="nav-item" href="#section-radar"   data-section="section-radar">
-        <span class="nav-dot"></span>
-        <span class="nav-label">Beyond the Score</span>
-    </a>
-    <a class="nav-item" href="#section-scatter" data-section="section-scatter">
-        <span class="nav-dot"></span>
-        <span class="nav-label">Every Change</span>
-    </a>
-    <a class="nav-item" href="#section-conclusion" data-section="section-conclusion">
-        <span class="nav-dot"></span>
-        <span class="nav-label">Conclusion</span>
-    </a>
-</nav>
-
-<article>
-
-    <!-- ── Stadium Hero Header ── -->
-    <header class="article-header" id="section-intro">
-        <p class="kicker">Premier League &nbsp;·&nbsp; 2014-2026 &nbsp;·&nbsp; Data Analysis</p>
+    <article>
+        <p class="kicker">Premier League &nbsp;·&nbsp; 2014–2026 &nbsp;·&nbsp; Data Analysis</p>
         <h1>The Manager Bounce</h1>
-        <div class="byline">
-            <span>11 Premier League seasons</span>
-            <span class="byline-dot">·</span>
-            <span>159 managerial changes</span>
-            <span class="byline-dot">·</span>
-            <span>Scroll to explore</span>
-        </div>
-        <div class="header-stats">
-            <div class="header-stat">
-                <span class="header-stat-num">159</span>
-                <span class="header-stat-lbl">Manager Changes</span>
-            </div>
-            <div class="header-stat">
-                <span class="header-stat-num">11</span>
-                <span class="header-stat-lbl">Seasons</span>
-            </div>
-            <div class="header-stat">
-                <span class="header-stat-num">2014-26</span>
-                <span class="header-stat-lbl">Coverage</span>
-            </div>
-            <div class="header-stat">
-                <span class="header-stat-num">5</span>
-                <span class="header-stat-lbl">Visualisations</span>
-            </div>
-        </div>
-    </header>
 
-    <!-- ── Body ── -->
-    <div class="article-body">
+        <p>In football, firing a manager is always a gamble. It disrupts training,
+        unsettles the squad, and costs money. Yet clubs do it constantly — betting
+        that the shock of a new voice and a fresh set of eyes will arrest a slide
+        and revive the team. This phenomenon has a name: the <em>manager bounce</em>.</p>
 
-        <p>In football, firing a manager is never just a personnel decision. It is a
-        signal that something is broken, patience has run out, and the club needs a reset.</p>
+        <p>The bounce is contentious. Critics argue it is little more than statistical
+        noise — a struggling team regressing to the mean regardless of who is in
+        the dugout. Proponents point to real examples: Spurs under Pochettino,
+        Leicester under Ranieri, Liverpool under Klopp. But what does the data
+        actually show across eleven full Premier League seasons?</p>
 
+        <p>To answer that question, we tracked every managerial change in the Premier
+        League from 2014 to 2026 — 159 changes in total — and measured how each
+        team's points-per-game changed in the matches immediately surrounding the
+        switch. Only changes with enough games on both sides of the handover were
+        included; caretaker appointments are flagged separately throughout.</p>
 
-        <p>Fans often call what comes next the <em>manager bounce</em> the short-term lift
-        a team supposedly gets after a new manager arrives. The idea feels intuitive. A new
-        voice can change the mood, simplify tactics, or push players who had gone flat under
-        the previous coach. But it can also be a story we tell after the fact. Many managers
-        are fired after unusually bad runs, so some improvement may have happened anyway.</p>
+        <p>We start with one of the most vivid examples of the bounce the era
+        has produced.</p>
 
-        <p>This project asks a simple question: does the manager bounce actually show up
-        in the data?</p>
+        <h2>A Case Study: Lampard to Tuchel</h2>
 
-        <p>To test that, we looked at Premier League managerial changes from 2014 to 2026
-        and compared each team's points per game before and after the handover. Instead of
-        relying on one famous example, we align many manager changes around the same match
-        zero and look for the pattern underneath the noise.</p>
+        <p>By January 2021, Frank Lampard's Chelsea were in crisis. A summer transfer
+        window that cost the club over £200 million by bringing in Timo Werner, Kai
+        Havertz, and Ben Chilwell, had not translated into results. A run of one win
+        in five left Chelsea ninth in the table, and owner Roman Abramovich, who had
+        already fired eleven managers before Lampard, had seen enough.</p>
 
-        <!-- ── Section 1: Case Study ── -->
-        <h2 id="section-case"><span class="section-label">Case Study</span> Lampard to Tuchel</h2>
-
-        <p>Chelsea's 2021 switch from Frank Lampard to Thomas Tuchel is almost the perfect
-        version of the manager-bounce story.</p>
-
-        <p>By January, Lampard's Chelsea looked stuck. The club had spent heavily on players
-        like Timo Werner, Kai Havertz, and Ben Chilwell, but the results did not match the
-        talent in the squad. Chelsea were sliding down the table, and the team looked too
-        open, too inconsistent, and short on control.</p>
-
-        <p>Tuchel arrived with a very different identity. Within weeks, Chelsea became harder
-        to break down. The change was not subtle. The same squad suddenly looked more
-        organised, more compact, and more confident. This is the kind of example that makes
-        the manager bounce feel real: a talented team underperforming, followed by a new
-        coach who immediately gives them structure.</p>
+        <p>The replacement was Thomas Tuchel, dismissed by Paris Saint-Germain just
+        weeks earlier despite reaching the Champions League final. Tuchel had
+        a reputation for defensive organization and intense tactical preparation —
+        a sharp contrast to Lampard's more open, attacking approach.</p>
 
         <figure id="fig1-container">
             <div id="fig1"></div>
             <figcaption>
-                <strong>Fig. 1</strong> Chelsea's results in the 10 games before and
+                <strong>Fig. 1</strong> — Chelsea's results in the 10 games before and
                 after Frank Lampard was replaced by Thomas Tuchel in January 2021.
                 Bar height shows points earned (3 = win, 1 = draw); losses are shown
                 as a stub at the baseline. The dashed line marks the handover.
-                Hover over any bar for match details.
                 <span class="legend">
                     <span class="legend-swatch" style="background:#4a9e6b"></span> Win &nbsp;
                     <span class="legend-swatch" style="background:#e8b84b"></span> Draw &nbsp;
@@ -258,105 +186,109 @@
             </figcaption>
         </figure>
 
-        <blockquote class="pull-quote">
-            But that is also why Chelsea is dangerous as evidence. It is memorable,
-            dramatic, and unusually clean. Most Premier League sackings are messier than this.
-            <cite>The limits of one example</cite>
-        </blockquote>
+        <p>The shift is stark. Lampard's final ten league games were erratic —
+        heavy defeats against Manchester City and Arsenal sandwiched between
+        victories, with no consistent pattern to suggest a side settling into
+        a system. Under Tuchel, Chelsea immediately became difficult to beat.
+        They conceded almost nothing in his opening weeks, climbing the table
+        steadily before ultimately lifting the Champions League trophy in May.</p>
 
+        <p>What made the turnaround so sudden was not just personnel — the squad
+        barely changed in January — but shape and defensive structure. Tuchel
+        installed a back three almost immediately, compressing Chelsea's defensive
+        block and removing the space behind the full-backs that had been so
+        ruthlessly exposed under Lampard. The results reflected it: just two goals
+        conceded in his first eight Premier League matches.</p>
 
-        <div class="transition-box">
-            Chelsea gives us the story. The rest of the dataset lets us test whether the
-            story holds up. A single example can make the bounce look obvious but across
-            the league, clubs fire managers for many different reasons: poor tactics, injuries,
-            bad recruitment, dressing-room problems, or simply bad luck. If the manager bounce
-            is more than a myth, we should see improvement across many cases, not just in the
-            ones fans remember.
-        </div>
+        <p>It is exactly the kind of story that makes the case for the bounce.
+        But Chelsea in 2021 had unusual circumstances: a world-class squad
+        underperforming its talent level, a new manager arriving with a clear
+        tactical identity, and a transfer window's worth of players who had
+        not yet clicked under their previous coach. How often does football
+        hand a new manager such favourable conditions?</p>
 
-        <!-- ── Section 2: Evidence ── -->
-        <h2 id="section-evidence"><span class="section-label">The Evidence</span> Does the bounce exist?</h2>
+        <h2>Does the bounce exist?</h2>
 
-        <p>For each managerial change, we calculated the difference in points per game before
-        and after the handover. A positive value means the team improved after changing
-        managers. A negative value means the team got worse.</p>
+        <p>To find out, we expand the lens to every qualifying managerial change
+        across the dataset. For each handover, we calculate the difference in
+        points per game between the outgoing manager's final games and the new
+        manager's first games, using the same window on both sides. A positive
+        number means the team improved; negative means it got worse.</p>
 
-        <p>The distribution shows that the bounce exists, but not in the clean, dramatic way
-        it is often talked about. Most teams improved after making a change, and the median
-        change is positive. That supports the idea that clubs often get some short-term lift.</p>
+        <p>The distribution below is the result. Each bar represents a cluster of
+        manager changes that produced a similar outcome. If the bounce were a
+        universal truth, we would expect the entire distribution to sit clearly
+        to the right of zero. If it were pure noise, the distribution would be
+        centered on zero.</p>
 
         <figure id="fig2-container">
             <div id="fig2"></div>
-            <div id="bounce-callout" class="bounce-callout"></div>
             <figcaption>
-                <strong>Fig. 2</strong> Distribution of change in points per game across all
-                qualifying manager changes. Bars right of zero represent improvement; bars left
-                represent decline. The dashed line marks the median. Hover bars to see which
-                specific changes fall in each range. Use the slider to adjust the match window.
+                <strong>Fig. 2</strong> — Distribution of change in points per game
+                across all qualifying manager changes. Bars right of zero represent
+                improvement after the change; bars left represent decline. The dashed
+                line marks the median. Use the slider to change how many matches on
+                each side of the handover are included — changes without enough games
+                are excluded.
             </figcaption>
         </figure>
 
-        <p>But the spread matters. A large number of teams did not improve, and some declined
-        after changing managers. The bounce is not automatic. It is better understood as a
-        tendency than a guarantee.</p>
+        <p>The data tells a murkier story than either camp in the debate would
+        like. The median is positive — more manager changes produced an
+        improvement than a decline — but the effect is modest, and the spread
+        is wide. Plenty of clubs fired their manager and got worse. The
+        distribution is not centred on zero, but it is not dramatically skewed
+        right either.</p>
 
-        <p>The window size also changes the story. When we look only a few matches before
-        and after the change, the bounce looks stronger. But as the window expands, the effect
-        becomes smaller and less dramatic. That suggests some of the early lift may be
-        short-lived or partly driven by teams recovering from an unusually bad run.</p>
+        <p>Notice too what happens as you widen the window using the slider.
+        With only five games on each side, the bounce looks more pronounced —
+        small samples are volatile, and the results right after a change tend
+        to be the easiest wins. As the window grows to ten or fifteen matches,
+        the distribution compresses. New managers who looked transformative
+        in their first weeks often settle back toward the level of the team
+        they inherited. The bounce, to the extent it exists, appears to
+        fade.</p>
 
+        <p>That is consistent with the regression-to-the-mean hypothesis.
+        Managers are typically dismissed after an unusually poor run — one
+        that is partly bad luck. The team was always going to recover
+        somewhat, regardless of who was in the managerial position. The new manager gets
+        the credit; and the statistics suggest they may not always deserve it.</p>
 
-        <!-- ── Section 3: Trajectory ── -->
-        <h2 id="section-trajectory"><span class="section-label">Over Time</span> The Bounce Trajectory</h2>
+        <p>There are, however, genuine outliers — changes that produced large,
+        sustained improvements that are difficult to explain through regression
+        alone. These tend to share a pattern: the incoming manager had a
+        well-defined tactical system, the squad had the personnel to execute
+        it, and the change was made early enough in the season for that system
+        to take root. Claudio Ranieri's Leicester, Jürgen Klopp's early months
+        at Liverpool, and Nuno Espírito Santo's first campaign at Wolves all
+        appear in the rightmost bars of this distribution. They are the
+        exceptions — but they are real.</p>
 
-        <p>The distribution tells us whether teams improved overall, but it does not show the
-        shape of the bounce. Does the improvement happen immediately? Does it build slowly?
-        Or does it fade after the first few matches?</p>
+        <p>Equally instructive are the changes that made things worse. A
+        significant minority of appointments — roughly a third at most window
+        sizes — produced teams that performed worse under the new manager than
+        the old one. These are often late-season rescues where the squad is
+        already depleted, or situations where the new manager's style is simply
+        a poor fit for the players available. The hire-and-hope strategy has a
+        measurable failure rate.</p>
 
-        <p>The trajectory chart gives a clearer answer. On average, teams do improve shortly
-        after a managerial change. The first few matches under a new manager tend to sit above
-        the pre-change baseline, which suggests that the bounce is not just a fan myth.</p>
+        <h2>Beyond the Scoreline</h2>
 
+        <p>Points per game captures the result but not the story. A team can
+        improve its points haul while creating fewer chances, or concede more
+        goals while climbing the table through sheer finishing luck. To
+        understand what actually changes when a new manager arrives, we need
+        to look beneath the headline number.</p>
 
-        <figure id="trajectory-container">
-            <div id="trajectory-chart"></div>
-            <figcaption>
-                <strong>Fig. 3</strong> Average points per game at each match offset
-                from the managerial handover, pooled across all qualifying changes.
-                Shaded bands show ±1 standard error. The dotted line marks the mean
-                pre-change level. Hover any dot for details.
-                <span class="legend">
-                    <span class="legend-swatch" style="background:#888;opacity:.8"></span> Before &nbsp;
-                    <span class="legend-swatch" style="background:#2d7a4f"></span> After
-                </span>
-            </figcaption>
-        </figure>
+        <p>The radar chart below compares six performance dimensions across a
+        ten-match window on each side of every mid-season managerial change
+        in the dataset. Each axis runs from the dataset's worst value at the
+        centre to its best at the edge, so a larger polygon always means
+        better performance. Goals conceded is inverted for the same reason.
+        Select a club and then a specific handover to see how the team's
+        tactical fingerprint shifted.</p>
 
-        <p>But the effect is modest. It is not a total transformation. The average improvement
-        is small, and by around the eighth or ninth match, the advantage starts to fade back
-        toward the team's earlier level.</p>
-
-        <p>That fading is important. Managers are usually fired after a poor stretch, and poor
-        stretches often include bad luck as well as bad performance. Some recovery may have
-        happened even without a new manager. In other words, the new manager may deserve some
-        credit, but probably not all of it.</p>
-
-        <!-- ── Section 4: Radar ── -->
-        <h2 id="section-radar"><span class="section-label">Deeper</span> Beyond the Scoreline</h2>
-
-        <p>Points per game is the headline number, but it does not explain how a team changed.</p>
-
-        <p>A club might collect more points because it genuinely became better: creating more
-        chances, defending more cleanly, or controlling games more consistently. But it might
-        also improve because of finishing luck, weaker opponents, or a few close results going
-        its way.</p>
-
-        <p>That is why we also look at performance indicators beyond points. The radar chart
-        compares each team before and after a managerial change across several dimensions,
-        including goals scored, shots on target, corners, clean sheets, goals conceded, and
-        win rate. This view helps show whether a manager change shifted the team's actual
-        playing profile, not just the final score. Some handovers show a clear tactical shift.
-        Others look more like a results bump without a major underlying change.</p>
         <figure id="fig3-container">
             <div class="club-grid" id="club-grid"></div>
             <div class="event-row" id="event-row"></div>
@@ -367,7 +299,7 @@
                 </div>
                 <div class="radar-legend">
                     <span><span class="legend-swatch" style="background:#c0392b"></span> Before (outgoing)</span>
-                    <span><span class="legend-swatch" style="background:#2d7a4f"></span> After (incoming)</span>
+                    <span><span class="legend-swatch" style="background:#4a9e6b"></span> After (incoming)</span>
                 </div>
                 <div class="radar-svg-wrap">
                     <svg id="radar-svg" width="420" height="420"></svg>
@@ -380,50 +312,65 @@
                 </table>
             </div>
             <div class="empty-state" id="radar-empty">
-                <div class="big-arrow">↑</div>
+                <div class="big-arrow">&#8593;</div>
                 Pick a club above to explore its managerial changes.
             </div>
             <figcaption>
-                <strong>Fig. 4</strong> Radar comparison of team performance in the
-                10 matches before and after each mid-season managerial change. Each axis
-                runs from the worst value in the dataset (centre) to the best (edge).
-                Hover any vertex dot for details; the matching table row highlights in sync.
+                <strong>Fig. 3</strong> — Radar comparison of team performance in the
+                10 matches before and after each mid-season managerial change. Each
+                axis runs from the worst value in the dataset (centre) to the best
+                (edge). "Goals Conceded" is inverted so that the edge always means
+                better. Select a club and handover to compare.
             </figcaption>
         </figure>
 
-        <p>What the radar helps show is whether the change was only about results, or whether
-        the team actually started playing differently. If the after shape simply gets larger,
-        the team may have improved across the board. But if the shape changes direction, that
-        suggests a shift in style: more shots, cleaner defending, a higher win rate, or a
-        different balance between attack and defense.</p>
+        <p>What the radar reveals most consistently is that offensive metrics
+        respond faster to a managerial change than defensive ones. Shot volumes,
+        corners, and goals scored tend to shift within the first five or six
+        games — the new manager's pressing triggers and attacking patterns are
+        the first things that show up in the data. Defensive solidity, measured
+        here through clean sheets and goals conceded, takes longer to build.
+        A new back-line shape requires repetition on the training ground, and
+        the results reflect it: many managers show early offensive improvement
+        but a lag before the defensive numbers catch up.</p>
 
-        <p>This matters because a manager bounce is not always the same thing as manager
-        impact. A team can collect more points for a few weeks without changing much underneath.
-        The radar chart makes those mixed cases easier to see. Some handovers look like real
-        tactical changes. Others look more like a temporary results bump.</p>
+        <p>This asymmetry matters for interpreting early results under a new
+        appointment. A team that wins its first three games under a new manager
+        may be doing so on improved attacking output while still conceding at
+        the same rate as before — a profile that becomes unsustainable as
+        opponents adjust. The radar makes these mixed pictures visible in a
+        way that the points tally alone cannot.</p>
 
-        <!-- Section 5: Scatter -->
-        <h2 id="section-scatter"><span class="section-label">Explore</span> Every Change</h2>
+        <p>Some handovers tell a more coherent story. When both polygons move
+        outward together — more goals, fewer conceded, better win rate — it
+        is a sign of genuine structural improvement rather than a temporary
+        lift. When the after polygon is larger on some axes but smaller on
+        others, the picture is mixed: the new manager changed the team's
+        identity without necessarily improving its results. These are often
+        the appointments that look promising early and then plateau.</p>
 
-        <p>The distribution shows the overall pattern, but it also hides the individual stories.
-        The scatter plot below brings those stories back. Each point represents one managerial
-        change. The horizontal axis shows how the team performed before the change, and the
-        vertical axis shows how the team performed after it.</p>
+        <h2>Exploring Every Change</h2>
 
-        <p>The diagonal line is the key reference point. Points above the line improved after
-        changing managers. Points below the line declined. This makes the manager bounce easier
-        to inspect case by case instead of only as an average across the league.</p>
+        <p>The histogram above collapses 159 manager changes into a single distribution.
+        That summary is useful, but it flattens the individual stories. The scatter plot
+        below restores them: each point is one managerial change, with the team's
+        performance <em>before</em> the switch on the horizontal axis and performance
+        <em>after</em> on the vertical. Points above the dashed diagonal improved;
+        points below declined.</p>
 
-        <p>You can also switch between points per game and goal differential. Points per game
-        tells us what the team actually earned, while goal differential gives a steadier sense
-        of whether the underlying performance changed. A team can win a few close matches and
-        look better in the table, but goal differential helps show whether the improvement was
-        more than just short-term results.</p>
+        <p>Toggle between points per game and goal differential per game to see whether
+        the bounce looks different depending on which lens you use. The goal differential
+        view tends to be more stable — it is harder to run up a string of narrow wins
+        than to grind out points, so the goal difference picture is often a better
+        indicator of whether genuine improvement occurred. Select clubs from the
+        grid to highlight their specific changes — useful for tracing a single club's
+        history of hirings and firings. Click any dot to see the full breakdown for that
+        managerial change.</p>
 
-        <p>This view connects back to the main question of the project. If a team moves clearly
-        above the diagonal, the change looks like a successful bounce. If it stays near the line,
-        the effect is small. If it falls below the line, the new manager did not fix the problem,
-        at least not in the selected window.</p>
+        <p>Clubs with serial managerial instability — Watford and Sunderland in this
+        era stand out — show a scatter of dots with no clear pattern: some improved,
+        some declined, and the aggregate effect is roughly zero. The churn itself
+        may be the problem. Stability, it turns out, is its own form of performance.</p>
 
         <figure id="fig4-container">
             <div class="scatter-controls">
@@ -446,6 +393,7 @@
             </div>
             <div class="club-grid" id="scatter-club-grid"></div>
             <div id="fig4-row">
+                <!-- Left panel: club crest + manager swap -->
                 <div id="scatter-left" class="scatter-side-panel">
                     <div class="side-empty" id="scatter-left-empty">
                         <div style="font-size:1.5rem">&#8592;</div>
@@ -469,9 +417,9 @@
                         <div class="swap-meta" id="swap-meta"></div>
                     </div>
                 </div>
-
+                <!-- Centre: scatter SVG -->
                 <div id="fig4"></div>
-
+                <!-- Right panel: stats breakdown -->
                 <div id="scatter-right" class="scatter-side-panel">
                     <div class="side-empty" id="scatter-right-empty">
                         <div>Stats appear<br>on click</div>
@@ -480,78 +428,55 @@
                 </div>
             </div>
             <figcaption>
-                <strong>Fig. 5</strong> Each point represents one managerial change.
-                The horizontal axis shows team performance before the change, and the vertical
-                axis shows performance after the change. Points above the diagonal improved.
-                Points below the diagonal declined. Toggle the metric, adjust the match window,
-                filter caretaker appointments, and select clubs to highlight their changes.
-                Click any point for a full breakdown.
+                <strong>Fig. 4</strong> — Each point represents one managerial change.
+                Horizontal axis: team performance before the change; vertical axis:
+                performance after. Points above the dashed diagonal improved; points below
+                declined. Toggle the metric, adjust the match window, filter caretaker
+                appointments, and select clubs to highlight their changes. Click any point
+                for a full breakdown.
             </figcaption>
         </figure>
 
-        <!-- Section 6: Conclusion -->
-        <h2 id="section-conclusion"><span class="section-label">Verdict</span> Conclusion</h2>
+        <h2>What the Data Shows</h2>
 
-        <p>The manager bounce is real, but it is smaller and less reliable than the phrase
-        makes it sound.</p>
+        <p>The manager bounce is real, but it is smaller, more variable, and
+        more fleeting than the cycle of sackings and new appointments would
+        suggest. Across 159 changes, the median improvement is positive —
+        slightly more clubs got better than got worse — but the spread is
+        wide and the effect shrinks the longer you look. By fifteen games
+        under a new manager, the performance gap has typically compressed to
+        something close to statistical noise.</p>
 
-        <p>Changing managers can create a short-term lift, especially in the first few matches.
-        But across the Premier League, that lift is uneven, often modest, and likely mixed with
-        regression to the mean. Some clubs genuinely improve under a new manager. Others simply
-        return to normal after a bad run. Some get worse.</p>
+        <p>That compression is the strongest evidence for the regression-to-the-mean
+        argument. Teams are fired when they are performing below their talent
+        level; they were going to recover somewhat anyway. The new manager
+        arrives, the squad responds to the novelty of fresh instructions, and
+        results improve. Then opposition analysts adapt, early-season luck
+        averages out, and the team settles back toward what its underlying
+        quality was always likely to produce. The manager gets credit for the
+        improvement and blame for the plateau — neither entirely deserved.</p>
 
-        <blockquote class="pull-quote">
-            The better question may not be whether the bounce exists. The data suggests
-            that it does. The better question is: when is the bounce actually about the
-            manager, and when is it just football correcting itself?
-            <cite>The real question</cite>
-        </blockquote>
+        <p>What separates the genuine bounces from the illusory ones is harder
+        to read in the data but visible in the radar charts: coherence. The
+        appointments that produced lasting improvement were ones where the
+        new manager had a clear system, the squad had the players to run it,
+        and there was enough of the season remaining for that system to become
+        automatic. These conditions are rarely all present at once, which is
+        why the transformative bounce — the Klopp at Liverpool, the Tuchel at
+        Chelsea — remains the exception rather than the rule.</p>
 
-    </div><!-- /.article-body -->
+        <p>For clubs deciding whether to make a change, the data offers a sober
+        caution. The expected return on a managerial sacking is modest at best
+        and negative at worst. The decision is rarely purely about performance;
+        it involves dressing-room dynamics, board confidence, and commercial
+        pressures that no dataset can fully capture. But when the question is
+        simply whether firing the manager tends to make the football better,
+        the honest answer is: sometimes, a little, and not for long.</p>
 
-    <footer class="article-footer">
-        <div class="footer-badge">
-            <span class="footer-badge-icon">⚽</span>
-            <span class="footer-badge-text">Data Project</span>
-        </div>
-        <div>
-            Data covers all Premier League seasons from 2014-15 to 2025-26.
-            Manager changes include only those occurring mid-season with at least 5 qualifying
-            games on each side. Caretaker appointments are flagged and can be excluded in the
-            interactive figures. All points-per-game figures are match-level averages within
-            the specified window.
-        </div>
-    </footer>
-
-</article>
-
-<script>
-    // Reading progress bar
-    const bar = document.getElementById('progress-bar');
-    window.addEventListener('scroll', () => {
-        const h = document.documentElement;
-        bar.style.width = Math.min(100, (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100) + '%';
-    }, { passive: true });
-
-    // Side nav active state via IntersectionObserver
-    const navItems = document.querySelectorAll('.nav-item');
-    const sections = document.querySelectorAll('[id^="section-"]');
-
-    const obs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                navItems.forEach(n => {
-                    n.classList.toggle('active', n.dataset.section === entry.target.id);
-                });
-            }
-        });
-    }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
-
-    sections.forEach(s => obs.observe(s));
-</script>
-
-
-<script src="https://d3js.org/d3.v7.min.js"></script>
-<script type="module" src="app.js"></script>
+    </article>
 </body>
+<!-- D3.js Library -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<!-- Custom D3.js script to add visualizations -->
+<script type="module" src="app.js"></script>
 </html>
